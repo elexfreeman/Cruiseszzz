@@ -1074,7 +1074,7 @@ order by cv.value
         IncertPageTV($ship_id,'t_description',$_POST['ship-description']);
         IncertPageTV($ship_id,'t_usl',$_POST['t_usl']);
         IncertPageTV($ship_id,'t_teh_xar',$_POST['t_teh_xar']);
-        header('Location: /p-admin.html');
+        header('Location: /admin-login/c-admin.html');
         exit;
         echo "</pre>";
     }
