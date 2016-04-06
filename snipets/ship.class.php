@@ -398,6 +398,7 @@ order by cv.value
                    // print_r($obj);
 
                     echo "cauta_id=".IncertPage($obj)."\r\n";
+                    echo "cauta_id=".IncertPage($obj)."\r\n";
                     // $cruis_inner_id=$obj->TV['kr_inner_id'];
 
                 }
@@ -1076,6 +1077,12 @@ order by cv.value
         header('Location: /p-admin.html');
         exit;
         echo "</pre>";
+    }
+
+    /*Устанавливат популярный круиз*/
+    function CruisSetPop($cruis_id,$val)
+    {
+        IncertPageTV($cruis_id,'kr_pop','Да');
     }
 
     /*Выдает спсок популярных круизов*/
