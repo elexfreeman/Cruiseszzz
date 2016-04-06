@@ -11,7 +11,7 @@ $pop_cruis_list=$this->GetPopCrus();
         echo 'background-image: url("'. $cruis->TV['pop_img'].'");';
         ?>'>
             <div class="w-clearfix cr-title">
-                <div class="cr-delete" onclick="ZAdmin.Delete();">X</div>
+                <div class="cr-delete" onclick="ZAdmin.Delete(?php echo $cruis->id; ?>);">X</div>
                 <div class="cr-top-title-1"><?php echo $cruis->TV['pop_direction']; ?></div>
                 <div class="cr-top-title-2"><?php echo $cruis->TV['pop_title_description']; ?></div>
                 <div class="cr-date"><?php echo $cruis->TV['kr_date_start']; ?><br>

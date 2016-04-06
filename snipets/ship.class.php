@@ -1066,7 +1066,7 @@ order by cv.value
             if($tt[0]=='cruis')
             {
                 $cruis_id=$tt[1];
-                IncertPageTV($cruis_id,'kr_pop','Да');
+                $this->CruisSetPop($cruis_id,'Да');
             }
         }
 
@@ -1082,7 +1082,7 @@ order by cv.value
     /*Устанавливат популярный круиз*/
     function CruisSetPop($cruis_id,$val)
     {
-        IncertPageTV($cruis_id,'kr_pop','Да');
+        IncertPageTV($cruis_id,'kr_pop',$val);
     }
 
     /*Выдает спсок популярных круизов*/
