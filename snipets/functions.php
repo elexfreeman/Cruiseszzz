@@ -306,7 +306,7 @@ function IncertPageTV($page_id,$tv_name,$tv_value)
         $sql_modx_vars = "update " . $table_prefix . "site_tmplvar_contentvalues
             set value='".EscapeString($tv_value)."' where  (tmplvarid='" . $tv_id . "')and(contentid='".$page_id."')";
 
-       echo $sql_modx_vars;
+       //echo $sql_modx_vars;
         $modx->query($sql_modx_vars);
     }
 }

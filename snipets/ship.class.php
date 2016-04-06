@@ -1083,6 +1083,8 @@ order by cv.value
     function CruisSetPop($cruis_id,$val)
     {
         IncertPageTV($cruis_id,'kr_pop',$val);
+        $res['status']='done';
+        return json_encode($res);
     }
 
     /*Выдает спсок популярных круизов*/
@@ -1556,7 +1558,7 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
             elseif ($_GET['action'] == 'CruisSetPop')
             {
                 ClearGet();
-               $this->CruisSetPop($_GET['cruis_id'],$_GET['val']);
+               echo $this->CruisSetPop($_GET['cruis_id'],$_GET['val']);
             }
 
         }
