@@ -205,7 +205,7 @@ ZAdmin.Delete  = function(cruis_id)
         },
         function (data)
         {
-            if(data.status='done') window.location.href = "/admin-login/p-admin.html";
+            if(data.status='done') window.location.href = "/admin-login/c-admin.html";
         }, "json"
     ); //$.get  END
 }
