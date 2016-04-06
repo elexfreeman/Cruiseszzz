@@ -195,5 +195,17 @@ ZAdmin.Logout = function()
 /*Показывает окно редактировния популярного круиза*/
 ZAdmin.Delete  = function(cruis_id)
 {
-
+    $.get(
+        "ajax.html",
+        {
+            //log1:1,
+            action: "CruisSetPop",
+            cruis_id: cruis_id,
+            val: 'Нет'
+        },
+        function (data)
+        {
+            if(data.status='done') window.location.href = "/admin-login/";
+        }, "json"
+    ); //$.get  END
 }

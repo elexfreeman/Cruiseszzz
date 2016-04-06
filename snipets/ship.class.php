@@ -1490,6 +1490,8 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
     }
 
     /*Ajax - вывод*/
+
+    /*todo сделать разграничение прав тут*/
     function Ajax()
     {
         if(isset($_GET['action']))
@@ -1551,6 +1553,12 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
             {
                $this->AdminLogout();
             }
+            elseif ($_GET['action'] == 'CruisSetPop')
+            {
+                ClearGet();
+               $this->CruisSetPop($_GET['cruis_id'],$_GET['val']);
+            }
+
         }
         else
         {
