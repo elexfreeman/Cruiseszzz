@@ -1555,6 +1555,7 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
             {
                $this->AdminLogout();
             }
+            /*Устанавливает популярный круиз*/
             elseif ($_GET['action'] == 'CruisSetPop')
             {
                 ClearGet();
@@ -1564,7 +1565,7 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
         }
         else
         {
-            print_r($_POST);
+            //print_r($_POST);
             if(isset($_POST['action']))
             {
                 if($_POST['action']=='ZAdminShipUpdate')
