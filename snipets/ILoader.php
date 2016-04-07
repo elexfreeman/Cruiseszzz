@@ -96,8 +96,76 @@ class ILoader extends Ship
         }
     }
 
-    public function UpdateCruis($ship,$cruis)
+    public function UpdateCruis($cruis_id,$ship,$cruis)
     {
+        /*Обновляются только TV*/
+        $obj = new stdClass();
+
+        $obj->pagetitle=$cruis['id']."_".$cruis['name'];
+        $obj->parent=$ship->id;
+        $obj->template=$this->CruisTemplate;
+        $obj->TV['kr_name']=$cruis['name'];
+        $obj->TV['kr_inner_id']=$cruis['id'];
+        $obj->TV['kr_date_start']=$cruis['date_start'];
+        $obj->TV['kr_date_end']=$cruis['date_end'];
+        $obj->TV['kr_nights']=$cruis['nights'];
+        $obj->TV['kr_days']=$cruis['days'];
+        $obj->TV['kr_weekend']=0;
+        if($cruis['weekend']) $obj->TV['kr_weekend']=1;
+        //$obj->TV['kr_weekend']=$cruis['weekend'];
+        $obj->TV['kr_cities']=$cruis['cities'];
+        $obj->TV['kr_route']=$cruis['route'];
+        $obj->TV['kr_route_name']=$cruis['route_name'];
+        $obj->TV['kr_region']=$cruis['region'];
+        $obj->TV['kr_river']=$cruis['river'];
+        $obj->TV['kr_surchage_meal_rub']=$cruis['surchage_meal_rub'];
+        $obj->TV['kr_surcharge_excursions_rub']=$cruis['surcharge_excursions_rub'];
+        $obj->echo=true;
+
+        $cruis_alias=$obj->alias;
+
+
+        /*Блять!*/
+        //$cruis_id=IncertPage($obj);
+
+
+        foreach ($obj->TV as $tv_name=>$tv_value)
+        {
+            IncertPageTV($cruis_id,$tv_name,$tv_value);
+            echo "UPDATE ",$tv_name."=".$tv_value." \r\n";
+        }
+
+
+        /*Вставляем цены*/
+
+        //$cruis_price_list=$this->GetCruisPriceList()
+
+
+
+        /*Нужен выделенный сервер чтобы проставить таймауты*/
+     /*   echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                ";
+        echo "Цены
+                ";
+        foreach($cruis['prices'] as $price_id=>$price)
+        {
+            $obj2 = new stdClass();
+
+            $obj2->pagetitle=$cruis['name']."_".$price_id."_".$price['name'];
+            $obj2->parent=$cruis_id;
+            $obj2->template=$this->PriceTemplate;
+            $obj2->TV['cr_price_name']=$price['name'];
+            $obj2->TV['cr_price_price_eur']=$price['price_eur'];
+            $obj2->TV['cr_price_price']=$price['price'];
+            $obj2->TV['cr_price_price_usd']=$price['price_usd'];
+            $obj2->TV['cr_price_places_total']=$price['places_total'];
+            $obj2->TV['cr_price_places_free']=$price['places_free'];
+
+            $obj2->alias = encodestring($obj2->pagetitle);
+            $obj2->url="ships/".$ship->alias."/".$cruis_alias."/".$obj2->alias . ".html";
+            //  print_r($obj2);
+            IncertPage($obj2);
+        }*/
 
     }
 
@@ -138,7 +206,7 @@ class ILoader extends Ship
                 }
                 else
                 {
-                   // $this->UpdateCruis($Ship,$cruis);
+                    $this->UpdateCruis($cruis_info,$Ship,$cruis);
                     echo "SHIP = ".$Ship->title." Cruis inner_id=".$cruis['id']."  status = UPDATE \r\n";
                 }
                 /*Нужно еще удалить тех что нет в базе инфлота*/
