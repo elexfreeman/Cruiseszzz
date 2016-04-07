@@ -14,7 +14,7 @@ class ILoader extends Ship
     {
         $res=0;
         /*Получаем список круизов теплохода*/
-        $cruis_list = $this->$this->GetShipCruisList($ship_id);
+        $cruis_list = $this->GetShipCruisList($ship_id);
         /*Ищем наш круиз*/
         foreach ($cruis_list as $cruis)
         {
@@ -134,12 +134,12 @@ class ILoader extends Ship
                 if($cruis_info==0)
                 {
                     //$this->IncertCruis($Ship,$cruis);
-                    echo "SHIP = ".$Ship->pagetitle."Cruis inner_id=".$cruis['id'].' status = INCERT';
+                    echo "SHIP = ".$Ship->pagetitle."Cruis inner_id=".$cruis['id']." status = INCERT \r\n";
                 }
                 else
                 {
                    // $this->UpdateCruis($Ship,$cruis);
-                    echo "Cruis inner_id=".$cruis['id'].' status = UPDATE';
+                    echo "Cruis inner_id=".$cruis['id']."  status = UPDATE \r\n";
                 }
                 /*Нужно еще удалить тех что нет в базе инфлота*/
                 /* 2 сверка с базой нифофлота*/
