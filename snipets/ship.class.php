@@ -464,15 +464,17 @@ order by cv.value
     }
 
 
+
+
     //Загрузка туров для теплохода
     function LoadShipsTours()
     {
         global $shipKey;
         echo "<pre>";
-        $URL='http://api.infoflot.com/JSON/'.$this->shipKey.'/Tours/4/';
-        echo $URL;
+       // $URL='http://api.infoflot.com/JSON/'.$this->shipKey.'/Tours/4/';
+       // echo $URL;
         $cities=array();
-        $cruis_list=json_decode(file_get_contents($URL), true);
+       // $cruis_list=json_decode(file_get_contents($URL), true);
        // print_r($cruis_list);
         /*Получаем список теплоходов*/
         $Ships=$this->GetShipsList();
