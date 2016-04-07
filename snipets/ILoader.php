@@ -56,17 +56,17 @@ class ILoader extends Ship
         $obj->url="ships/".$ship->alias."/".$obj->alias . ".html";
         $cruis_alias=$obj->alias;
         //print_r($obj);
-        echo "Круиз \r\n";
+
         $cruis_id=IncertPage($obj);
         $cruis_inner_id=$obj->TV['kr_inner_id'];
         /*Вставляем цены*/
 
         //Обновляем города
-        $tmp=explode(' – ',$obj->TV['kr_cities']);
+     /*   $tmp=explode(' – ',$obj->TV['kr_cities']);
         foreach($tmp as $city)
         {
             $cities[$city]=1;
-        }
+        }*/
 
 
 
@@ -133,13 +133,13 @@ class ILoader extends Ship
                 $cruis_info=$this->GetCruisByInnerID($Ship->id,$id);
                 if($cruis_info==0)
                 {
-                    //$this->IncertCruis($Ship,$cruis);
-                    echo "SHIP = ".$Ship->pagetitle."Cruis inner_id=".$cruis['id']." status = INCERT \r\n";
+                    $this->IncertCruis($Ship,$cruis);
+                    echo "SHIP = ".$Ship->title." Cruis inner_id=".$cruis['id']." status = INCERT \r\n";
                 }
                 else
                 {
                    // $this->UpdateCruis($Ship,$cruis);
-                    echo "Cruis inner_id=".$cruis['id']."  status = UPDATE \r\n";
+                    echo "SHIP = ".$Ship->title." Cruis inner_id=".$cruis['id']."  status = UPDATE \r\n";
                 }
                 /*Нужно еще удалить тех что нет в базе инфлота*/
                 /* 2 сверка с базой нифофлота*/
