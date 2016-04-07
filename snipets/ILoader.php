@@ -139,7 +139,7 @@ class ILoader extends Ship
         /*Вставляем цены*/
 
         //$cruis_price_list=$this->GetCruisPriceList()
-
+       // $this->UpdateCruisPriceList($cruis_id);
 
 
         /*Нужен выделенный сервер чтобы проставить таймауты*/
@@ -166,6 +166,12 @@ class ILoader extends Ship
             //  print_r($obj2);
             IncertPage($obj2);
         }*/
+    }
+
+    /*Обновляем цены в круизе*/
+    function UpdateCruisPriceList($cruis_id)
+    {
+        $cruis_price_list=$this->GetCruisPriceList($cruis_id);
 
     }
 
