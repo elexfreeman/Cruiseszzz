@@ -133,11 +133,13 @@ class ILoader extends Ship
                 $cruis_info=$this->GetCruisByInnerID($Ship->id,$id);
                 if($cruis_info==0)
                 {
-                    $this->IncertCruis($Ship,$cruis);
+                    //$this->IncertCruis($Ship,$cruis);
+                    echo "Cruis inner_id=".$cruis['id'].' status = INCERT';
                 }
                 else
                 {
-                    $this->UpdateCruis($Ship,$cruis);
+                   // $this->UpdateCruis($Ship,$cruis);
+                    echo "Cruis inner_id=".$cruis['id'].' status = UPDATE';
                 }
                 /*Нужно еще удалить тех что нет в базе инфлота*/
                 /* 2 сверка с базой нифофлота*/
