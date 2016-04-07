@@ -96,7 +96,7 @@ class ILoader extends Ship
         }
     }
 
-    public function UpdateCruis($cruis)
+    public function UpdateCruis($ship,$cruis)
     {
 
     }
@@ -127,12 +127,18 @@ class ILoader extends Ship
 
                 $cruis['id']=$id;
                 $cruis['ship_id']=$Ship->id;
-                /*Проверяем есть ли такой круиз в базе*/
+
+                /* 1 сверка с нашей базой*/
+                /*Проверяем есть ли такой круиз в нашей базе*/
                 $cruis_info=$this->GetCruisByInnerID($Ship->id,$id);
                 if($cruis_info==0)
                 {
                     /*Нужно еще удалить тех что нет в базе инфлота*/
-                    $this->IncertCruis($cruis);
+                    $this->IncertCruis($Ship,$cruis);
+                }
+                else
+                {
+                    $this->UpdateCruis($Ship,$cruis);
                 }
 
 
