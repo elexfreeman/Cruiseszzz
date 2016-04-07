@@ -134,7 +134,7 @@ class ILoader extends Ship
                 if($cruis_info==0)
                 {
                     //$this->IncertCruis($Ship,$cruis);
-                    echo "Cruis inner_id=".$cruis['id'].' status = INCERT';
+                    echo "SHIP = ".$Ship->pagetitle."Cruis inner_id=".$cruis['id'].' status = INCERT';
                 }
                 else
                 {
