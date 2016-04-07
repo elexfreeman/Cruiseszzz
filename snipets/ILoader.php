@@ -133,13 +133,15 @@ class ILoader extends Ship
                 $cruis_info=$this->GetCruisByInnerID($Ship->id,$id);
                 if($cruis_info==0)
                 {
-                    /*Нужно еще удалить тех что нет в базе инфлота*/
                     $this->IncertCruis($Ship,$cruis);
                 }
                 else
                 {
                     $this->UpdateCruis($Ship,$cruis);
                 }
+                /*Нужно еще удалить тех что нет в базе инфлота*/
+                /* 2 сверка с базой нифофлота*/
+
 
 
 
