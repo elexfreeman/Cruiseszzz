@@ -7,6 +7,9 @@
  */
 require_once "Security.php";
 
+
+/*Безопасная вставка вместо mysql_escape_String*/
+/*Взято из CodeIgniter*/
 function EscapeString($s)
 {
     $sec = New CI_Security();
