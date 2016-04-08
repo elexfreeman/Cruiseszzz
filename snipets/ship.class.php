@@ -43,9 +43,13 @@ class Ship
 
     public $AgreementPage = 102440;
 
+    public $modx;
+
 
     function __construct()
     {
+
+
         $this->mailheaders  = "Content-type: text/html; charset=utf-8 \r\n";
         $this->mailheaders .= "From: berg <www-data@berg-kruiz.ru>\r\n";
 
