@@ -6,6 +6,8 @@
  * Date: 07.04.2016
  * Time: 16:43
  */
+
+
 class ILoader extends Ship
 {
     public $modx;
@@ -150,8 +152,16 @@ class ILoader extends Ship
     /*удаляет из нашей базы круизы которых нету в иинфофлоте*/
     public function RebaceCruis()
     {
-        $item = $this->modx->getObject('Item', 123);
-
+        $sec = New CI_Security();
+        $arg=array(
+                'parent' => 19483,
+                'context_key' =>'web'
+                );
+        $ships= $this->modx->getCollection('modResource', $arg);
+        foreach ($ships as $ship)
+        {
+            echo $sec->xss_clean($ship->get('pagetitle'))."\n";
+        }
     }
 
 

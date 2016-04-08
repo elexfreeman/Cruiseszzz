@@ -5,10 +5,14 @@
  * Date: 29.09.15
  * Time: 6:40
  */
+require_once "Security.php";
 
 function EscapeString($s)
 {
-    return $s;
+    $sec = New CI_Security();
+
+    return $sec->xss_clean($s);
+    ///return $s;
 }
 
 $shipKey='ad441cf7449bc9af3977e6b0c2a6806e3655247c';
