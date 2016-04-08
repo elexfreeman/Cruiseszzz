@@ -703,13 +703,16 @@ order by cv.value
         return $obj;
     }
 
+
+
     function GetCruisMinPrice($cruis_id)
     {
        $priceList = $this->GetCruisPriceList($cruis_id);
         $minPrice = 10000000000;
         foreach($priceList as $price)
         {
-            if($price->TV['cr_price_price']<$minPrice) $minPrice=$price->TV['cr_price_price'];
+            if(($price->TV['cr_price_price']<$minPrice)and($price->TV['cr_price_price']!=0))
+                $minPrice=$price->TV['cr_price_price'];
         }
         return $minPrice;
     }

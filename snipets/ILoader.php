@@ -134,52 +134,28 @@ class ILoader extends Ship
             IncertPageTV($cruis_id,$tv_name,$tv_value);
             echo "UPDATE ",$tv_name."=".$tv_value." \r\n";
         }
-
-
-        /*Вставляем цены*/
-
-        //$cruis_price_list=$this->GetCruisPriceList()
-       // $this->UpdateCruisPriceList($cruis_id);
-
-
-        /*Нужен выделенный сервер чтобы проставить таймауты*/
-     /*   echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                ";
-        echo "Цены
-                ";
-        foreach($cruis['prices'] as $price_id=>$price)
-        {
-            $obj2 = new stdClass();
-
-            $obj2->pagetitle=$cruis['name']."_".$price_id."_".$price['name'];
-            $obj2->parent=$cruis_id;
-            $obj2->template=$this->PriceTemplate;
-            $obj2->TV['cr_price_name']=$price['name'];
-            $obj2->TV['cr_price_price_eur']=$price['price_eur'];
-            $obj2->TV['cr_price_price']=$price['price'];
-            $obj2->TV['cr_price_price_usd']=$price['price_usd'];
-            $obj2->TV['cr_price_places_total']=$price['places_total'];
-            $obj2->TV['cr_price_places_free']=$price['places_free'];
-
-            $obj2->alias = encodestring($obj2->pagetitle);
-            $obj2->url="ships/".$ship->alias."/".$cruis_alias."/".$obj2->alias . ".html";
-            //  print_r($obj2);
-            IncertPage($obj2);
-        }*/
     }
 
     /*Обновляем цены в круизе*/
+    /*Это делается в другом классе*/
     function UpdateCruisPriceList($cruis_id)
     {
         $cruis_price_list=$this->GetCruisPriceList($cruis_id);
+    }
+
+
+    /*удаляет из нашей базы круизы которых нету в иинфофлоте*/
+    public function RebaceCruis()
+    {
 
     }
+
+
 
     //Загрузка туров для теплохода
     function LoadShipsTours()
     {
         global $shipKey;
-        echo "<pre>";
 
         $Ships=$this->GetShipsList();
 
@@ -267,6 +243,6 @@ class ILoader extends Ship
             $obj2->template=$this->CityTemplate;
             IncertPage($obj2);
         }*/
-        echo "</pre>";
+
     }
 }
