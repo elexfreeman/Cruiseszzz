@@ -31,7 +31,7 @@ class Ship
     public $CruisTemplate = 3;
 
     public $ShipPhotoTemplate = 5;
-    public $CruisPriceTemplate = 5;
+    public $CruisPriceTemplate = 6;
     public $CityTemplate = 9;
     public $CityParent = 4528;
     public $PriceTemplate = 6;
@@ -854,6 +854,7 @@ order by cv.value
         //$api->sendSMS ( '89608196846' , $_GET['ringName']." ".$_GET['ringPhone'] , 'kolodec');
         $api->sendSMS ( '89879552270' , 'Заявка на круиз '.$z->id,'berg-kruiz');
         $api->sendSMS ( '89170303007' , 'Заявка на круиз '.$z->id,'berg-kruiz');
+        $api->sendSMS ( regexPhone($z->TV['z_user_phone']) , 'Вызов принят, капитан! Заявка в работе. Вас ждут приключения! Заказ № '.$z->id,'berg-kruiz');
         $response = $api->getResponse();
         $res['response']=$response;
         $res['balance']=$api->getBalance ();

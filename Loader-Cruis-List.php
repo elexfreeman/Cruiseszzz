@@ -35,9 +35,9 @@ if (!is_object($modx) || !($modx instanceof modX)) {
 
 include "snipets/ship.class.php";
 include "snipets/ILoader.php";
-ob_end_flush();
-ob_start();
-set_time_limit(0);
+
 
 $dd = new ILoader();
 $dd->LoadShipsTours();
+$dd->RebaceCruis();
+$dd->UpdateCauts();

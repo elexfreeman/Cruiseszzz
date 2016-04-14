@@ -1,0 +1,354 @@
+
+#placesForm
+{
+    margin-top: 10px;
+}
+
+.bron-modal {
+    overflow: auto;
+    width: 900px;
+    height: auto;
+    background-color: #fff;
+}
+
+.bronmodaltop {
+    height: 200px;
+    background-image: url('../images/f-wave.png'), -webkit-linear-gradient(90deg, rgba(0, 0, 0, .53), hsla(0, 0%, 100%, 0)), url('../images/top-form-bron-bg.jpg');
+    background-image: url('../images/f-wave.png'), linear-gradient(0deg, rgba(0, 0, 0, .53), hsla(0, 0%, 100%, 0)), url('../images/top-form-bron-bg.jpg');
+    background-position: 0px 168px, 0px 0px, 0px 0px;
+    background-size: 100%, auto, 100% 100%;
+    background-repeat: no-repeat, repeat, repeat;
+}
+
+.bronmodalclosebutton {
+    width: 40px;
+    height: 40px;
+    float: right;
+    border: 1px solid #c4c4c4;
+    background-color: #fff;
+    background-image: url('../images/closeButton.jpg');
+    background-position: 8px 7px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.bronmodaltopinfo {
+    width: 100%;
+    height: 75px;
+    margin-top: 84px;
+    padding-top: 14px;
+    float: none;
+    text-align: center;
+}
+
+.bronmodallist {
+    display: inline-block;
+    width: 255px;
+    height: 50px;
+    margin-left: 0px;
+    float: none;
+    border: 2px solid #fff;
+    border-radius: 30px;
+    background-image: url('../images/mod-arrow-down.png');
+    background-position: 216px 10px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+.bronmodalprice {
+    display: inline-block;
+    width: 255px;
+    height: 50px;
+    margin-right: 39px;
+    margin-left: 0px;
+    padding-top: 11px;
+    float: none;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    font-size: 45px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.bronmodallistcaption {
+    padding-top: 11px;
+    color: #fff;
+    font-size: 27px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.bronmodalplaces {
+    width: 100%;
+    height: 83px;
+    padding-top: 15px;
+    display: none;
+    text-align: center;
+}
+
+.bronmodalplacescaption {
+    display: inline-block;
+    width: 255px;
+    margin-left: 50px;
+    float: none;
+    font-size: 26px;
+    line-height: 27px;
+    font-weight: 600;
+    text-align: right;
+}
+
+.bronmodalplacebox {
+    display: inline-block;
+    width: 320px;
+    margin-right: 0px;
+    padding-left: 15px;
+    float: none;
+}
+
+.bronmodalplaceitem {
+    display: inline-block;
+    width: 32px;
+    height: 100%;
+    margin-right: 40px;
+    padding-top: 34px;
+    float: none;
+    background-image: url('../images/bronNoChk.jpg');
+    background-position: 50% 11%;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.bronmodalplaceitem.check {
+    background-image: url('../images/bronChk.jpg');
+    background-position: 50% 11%;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+.bronmodalplaceitem.full {
+    background-image: url('../images/bronChkFull.jpg');
+    background-position: 50% 11%;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    font-size: 15px;
+}
+
+.bronbuttons {
+    width: 100%;
+    height: 118px;
+    padding-top: 18px;
+    padding-left: 20px;
+    border-bottom: 1px none #999;
+
+    background-position: 50% 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.bronbuttons.bron {
+    background-image: url('../images/modButtonsArrow2.jpg');
+
+}
+
+.bronbuttons.by {
+    background-image: url('../images/modButtonsArrow.jpg');
+
+
+}
+
+.bronbuttonbron {
+    display: inline-block;
+    width: 235px;
+    height: 60px;
+    padding-top: 15px;
+    float: none;
+    border: 2px solid #6cc;
+    color: #6cc;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.bronbuttonbron:hover {
+    background-color: rgba(102, 204, 204, .18);
+}
+
+.bronor {
+    display: inline-block;
+    width: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-top: 0px;
+    float: none;
+    color: #d0d0d0;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.bronbuttonpaynow {
+    display: inline-block;
+    width: 235px;
+    height: 60px;
+    margin-left: 21px;
+    padding-top: 15px;
+    float: none;
+    background-color: #6c6;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+
+.bronbuttonpaynow:hover {
+    background-color: #5cb65c;
+}
+
+.bronmodalh3 {
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.bronformfieldsrow {
+    padding-left: 20px;
+}
+
+.bronformfieldsrow.passjir {
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+
+.bronmodalinput {
+    display: inline-block;
+    width: 155px;
+    height: 40px;
+    margin-right: 16px;
+    margin-bottom: 1px;
+    padding: 3px 3px 3px 5px;
+    font-size: 15px;
+}
+
+.bronmodalinput.phone {
+    width: 300px;
+}
+
+.bronmodalcallme {
+    width: 400px;
+    height: 50px;
+    padding-top: 20px;
+    padding-left: 55px;
+    background-image: url('../images/bronNoChk.jpg');
+    background-position: 23px 66%;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.bronmodalcallme.check {
+    background-image: url('../images/bronChk.jpg'), url('../images/bronNoChk.jpg');
+    background-position: 23px 62%, 23px 66%;
+    background-size: 26px, 26px;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.bronbuttonsubmit {
+    display: block;
+    width: 240px;
+    height: 65px;
+    margin-top: 32px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 0px;
+    background-color: #6cc;
+    color: #fff;
+    font-size: 27px;
+    text-decoration: underline;
+    text-transform: none;
+}
+
+.bronbuttonsubmit.pay
+{
+    background-color: #5cb65c;
+}
+
+.bron-radio {
+    display: inline-block;
+}
+
+.bron-icon-wc {
+    width: 50px;
+    margin-right: 12px;
+    border: 1px solid #cecece;
+    cursor: pointer;
+}
+
+.bron-phone-content {
+    text-align: center;
+}
+
+
+#wf-form-BronModalForm-pay,##wf-form-BronModalForm-bron
+                            {
+                                display: none;
+                            }
+
+
+.bron-radio-p
+{
+    height: 18px;
+    margin-top: 3px;
+    display: block;
+    padding: 20px !important;
+    width: 18px;
+}
+
+.bronForm2
+{
+    display: none;
+}
+
+.CautaClick
+{
+    cursor: pointer;
+}
+
+
+text.CautaClick
+{
+    fill: #b0b0b0;
+}
+
+.noPlace .bronmodalplacescaption
+{
+    width: auto;
+    margin: 0;
+}
+
+.bronbuttons
+{
+    display: none;
+}
+
+.error_class
+{
+    border-color:red;
+}
+
+
+.PayButtons.agreement.alert{
+    width: 400px;
+    border: 1px solid red;
+    margin: 20px auto;
+    padding: 10px;
+}

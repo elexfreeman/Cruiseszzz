@@ -671,7 +671,7 @@ $(function() {
 */
 
 
-    $(".phone").mask("+7(999) 999-9999");
+    $(".phone").mask("8(999) 999-9999");
     /*Когда закрыли окно*/
     $('#BronModalV2').on('hidden.bs.modal', function (e) {
 
@@ -926,4 +926,11 @@ Bron2.BronClick = function()
             $('.alert').html('Возникла ошибка: ' + xhr.responseCode);
         }
     });
+}
+
+/*Показывает окно ссоглашения и убирает модал брони*/
+Bron2.Agrement = function()
+{
+    $('#ModalAgrement').modal('show');
+    $('#BronModalV2').modal('hide');
 }

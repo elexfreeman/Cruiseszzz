@@ -181,7 +181,9 @@ function GetPageInfo($page_id)
     global $table_prefix;
     $product = new stdClass();
     $product->id = 0;
-    $sql = "select * from " . $table_prefix . "site_content where id=" . $page_id;
+    $sql = "select * from " . $table_prefix . "site_content
+
+    where (id=" . $page_id.")and(deleted=0)";
     foreach ($modx->query($sql) as $row) {
 
         $product->id = $row['id'];
@@ -201,6 +203,18 @@ function GetPageInfo($page_id)
 
     }
     return $product;
+}
+
+/*Пометить на удаление страницу*/
+function PageDelete($page_id)
+{
+    global $modx;
+    global $table_prefix;
+    $sql="update  " . $table_prefix . "site_content
+set deleted=1
+where id=".$page_id;
+    echo $sql;
+    $modx->query($sql);
 }
 
 //Инфо по продукту
@@ -427,4 +441,11 @@ function GetChildListNoSort($obj_id,$template)
         $objects[]=GetPageInfo($row['id']);
     }
     return $objects;
+}
+
+
+/*удаляет из номера телефона лишние символы*/
+function regexPhone($phone)
+{
+    return preg_replace('/[^0-9]/', '', $phone);
 }

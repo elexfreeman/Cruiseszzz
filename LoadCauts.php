@@ -39,8 +39,7 @@ include "snipets/ILoader.php";
 ob_start();
 set_time_limit(0);*/
 
-$dd = new Ship();
-$dd->LoadCauts();
+
 
 
 $dd = new ILoader();

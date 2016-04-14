@@ -18,14 +18,14 @@ class ILoader extends Ship
         $this->modx = &$modx;
 
     }
-    /*âûäàåò êðóèç ïî åãî âíóòðåííåìó íîìåðó*/
+    /*Ð²Ñ‹Ð´Ð°ÐµÑ‚ ÐºÑ€ÑƒÐ¸Ð· Ð¿Ð¾ ÐµÐ³Ð¾ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÐµÐ¼Ñƒ Ð½Ð¾Ð¼ÐµÑ€Ñƒ*/
     /**/
     function GetCruisByInnerID($ship_id, $cruis_inner_id)
     {
         $res = 0;
-        /*Ïîëó÷àåì ñïèñîê êðóèçîâ òåïëîõîäà*/
+        /*ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº ÐºÑ€ÑƒÐ¸Ð·Ð¾Ð² Ñ‚ÐµÐ¿Ð»Ð¾Ñ…Ð¾Ð´Ð°*/
         $cruis_list = $this->GetShipCruisList($ship_id);
-        /*Èùåì íàø êðóèç*/
+        /*Ð˜Ñ‰ÐµÐ¼ Ð½Ð°Ñˆ ÐºÑ€ÑƒÐ¸Ð·*/
         foreach ($cruis_list as $cruis) {
             if ($cruis->TV['kr_inner_id'] == $cruis_inner_id) {
                 $res = $cruis->id;
@@ -35,7 +35,7 @@ class ILoader extends Ship
         return $res;
     }
 
-    /*Âñòàâëÿåò êóðèç â áàçó íå ïðîâåðÿÿ åñòü ëè òàêîé*/
+    /*Ð’ÑÑ‚Ð°Ð²Ð»ÑÐµÑ‚ ÐºÑƒÑ€Ð¸Ð· Ð² Ð±Ð°Ð·Ñƒ Ð½Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÑ ÐµÑÑ‚ÑŒ Ð»Ð¸ Ñ‚Ð°ÐºÐ¾Ð¹*/
     public function IncertCruis($ship, $cruis)
     {
         $obj = new stdClass();
@@ -67,20 +67,20 @@ class ILoader extends Ship
 
         $cruis_id = IncertPage($obj);
         $cruis_inner_id = $obj->TV['kr_inner_id'];
-        /*Âñòàâëÿåì öåíû*/
+        /*Ð’ÑÑ‚Ð°Ð²Ð»ÑÐµÐ¼ Ñ†ÐµÐ½Ñ‹*/
 
-        //Îáíîâëÿåì ãîðîäà
-        /*   $tmp=explode(' – ',$obj->TV['kr_cities']);
+        //ÐžÐ±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ð³Ð¾Ñ€Ð¾Ð´Ð°
+        /*   $tmp=explode(' â€“ ',$obj->TV['kr_cities']);
            foreach($tmp as $city)
            {
                $cities[$city]=1;
            }*/
 
 
-        /*Íóæåí âûäåëåííûé ñåðâåð ÷òîáû ïðîñòàâèòü òàéìàóòû*/
+        /*ÐÑƒÐ¶ÐµÐ½ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð½Ñ‹Ð¹ ÑÐµÑ€Ð²ÐµÑ€ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ñ‚Ð°Ð¹Ð¼Ð°ÑƒÑ‚Ñ‹*/
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 ";
-        echo "Öåíû
+        echo "Ð¦ÐµÐ½Ñ‹
                 ";
         foreach ($cruis['prices'] as $price_id => $price) {
             $obj2 = new stdClass();
@@ -104,7 +104,8 @@ class ILoader extends Ship
 
     public function UpdateCruis($cruis_id, $ship, $cruis)
     {
-        /*Îáíîâëÿþòñÿ òîëüêî TV*/
+
+        /*ÐžÐ±Ð½Ð¾Ð²Ð»ÑÑŽÑ‚ÑÑ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ TV*/
         $obj = new stdClass();
 
         $obj->pagetitle = $cruis['id'] . "_" . $cruis['name'];
@@ -131,7 +132,7 @@ class ILoader extends Ship
         $cruis_alias = $obj->alias;
 
 
-        /*Áëÿòü!*/
+        /*Ð‘Ð»ÑÑ‚ÑŒ!*/
         //$cruis_id=IncertPage($obj);
 
 
@@ -139,47 +140,217 @@ class ILoader extends Ship
             IncertPageTV($cruis_id, $tv_name, $tv_value);
             echo "UPDATE ", $tv_name . "=" . $tv_value . " \r\n";
         }
-    }
 
-    /*Îáíîâëÿåì öåíû â êðóèçå*/
-    /*Ýòî äåëàåòñÿ â äðóãîì êëàññå*/
-    function UpdateCruisPriceList($cruis_id)
-    {
-        $cruis_price_list = $this->GetCruisPriceList($cruis_id);
-    }
+        /*Ð¢Ð•Ð¿ÐµÑ€ÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ñ†ÐµÐ½Ñ‹*/
+        /*Ð—Ð°Ð³Ñ€ÑƒÐ¶Ð°ÐµÐ¼ Ð²ÑÐµ Ñ†ÐµÐ½Ñ‹ ÐºÑ€ÑƒÐ¸Ð·Ð°*/
 
 
-    /*óäàëÿåò èç íàøåé áàçû êðóèçû êîòîðûõ íåòó â èèíôîôëîòå*/
-    public function RebaceCruis()
-    {
-        $sec = New CI_Security();
-        $arg=array(
-                'parent' => 19483,
-                'context_key' =>'web'
-                );
-        $ships= $this->modx->getCollection('modResource', $arg);
-        foreach ($ships as $ship)
+        $prices_modx = GetChildList($cruis_id,$this->CruisPriceTemplate);
+
+        echo "PRICES================" ." \r\n";
+        foreach ($cruis['prices'] as $price_id => $price) {
         {
-            echo $sec->xss_clean($ship->get('pagetitle'))."\n";
+
+            foreach ($prices_modx as $price_modx)
+            {
+
+                //*Ð•ÑÐ»Ð¸ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ†ÐµÐ½Ñ‹ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚ Ñ‚Ð¾ Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ Ñ†ÐµÐ½Ñƒ*/
+
+                if($price_modx->TV['cr_price_name']==$price['name'])
+                {
+
+                    IncertPageTV($price_modx->id, 'cr_price_price_eur', $price['price_eur']);
+                    IncertPageTV($price_modx->id, 'cr_price_price', $price['price']);
+                    IncertPageTV($price_modx->id, 'cr_price_price_usd',  $price['price_usd']);
+                    IncertPageTV($price_modx->id, 'cr_price_places_total',  $price['places_total']);
+                    IncertPageTV($price_modx->id, 'cr_price_places_free',  $price['places_free']);
+                    echo 'cr_price_name^ ='.$price_modx->TV['cr_price_name']." = ".$price['price']." \r\n";
+                }
+
+            }
+
+        }
+            /*k_type=cr_price_name*/
+            /*Ð˜Ñ‰ÐµÐ¼ ÐºÐ°ÑŽÑ‚Ñƒ Ð´Ð»Ñ Ñ†ÐµÐ½Ñ‹*/
+
         }
     }
 
 
-    //Çàãðóçêà òóðîâ äëÿ òåïëîõîäà
+
+    /*ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÑ‚ ÑÐ¿Ð¸ÑÐ¾Ðº ÐºÑ€ÑƒÐ¸Ð·Ð¾Ð² Ñ Ð¸Ð½Ñ„Ð¾Ñ„Ð»Ð¾Ñ‚Ð°*/
+    public function InfoflotGetCruisList($ship_inner_id)
+    {
+        global $shipKey;
+        $URL = 'http://api.infoflot.com/JSON/' . $this->shipKey . '/Tours/' . $ship_inner_id . '/';
+        $cruis_list = json_decode(file_get_contents($URL), true);
+        $objects=[];
+        foreach ($cruis_list as $id => $cruis)
+        {
+            /*Ð—Ð°Ð¿Ð¸Ñ…Ð¸Ð²Ð°ÐµÐ¼ Ð²ÑÐµ Ð² $objects*/
+            $obj = new stdClass();
+            $obj->inner_id = $id;
+            $obj->ship_inner_id = $ship_inner_id;
+            $obj->TV['kr_name'] = $cruis['name'];
+            $obj->TV['kr_inner_id'] = $id;
+            $obj->TV['kr_date_start'] = $cruis['date_start'];
+            $obj->TV['kr_date_end'] = $cruis['date_end'];
+            $obj->TV['kr_nights'] = $cruis['nights'];
+            $obj->TV['kr_days'] = $cruis['days'];
+            $obj->TV['kr_weekend'] = 0;
+            if ($cruis['weekend']) $obj->TV['kr_weekend'] = 1;
+            $obj->TV['kr_cities'] = $cruis['cities'];
+            $obj->TV['kr_route'] = $cruis['route'];
+            $obj->TV['kr_route_name'] = $cruis['route_name'];
+            $obj->TV['kr_region'] = $cruis['region'];
+            $obj->TV['kr_river'] = $cruis['river'];
+            $obj->TV['kr_surchage_meal_rub'] = $cruis['surchage_meal_rub'];
+            $obj->TV['kr_surcharge_excursions_rub'] = $cruis['surcharge_excursions_rub'];
+            /*ID Ð¾Ð±ÑŠÐµÐºÑ‚Ñ€Ð° Ñ€Ð°Ð²ÐµÐ½ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÐµÐ¼Ñƒ id ÐºÑ€ÑƒÐ¸Ð·Ð°*/
+            $objects[$id]=$obj;
+        }
+        return $objects;
+    }
+
+    /*ÑƒÐ´Ð°Ð»ÑÐµÑ‚ Ð¸Ð· Ð½Ð°ÑˆÐµÐ¹ Ð±Ð°Ð·Ñ‹ ÐºÑ€ÑƒÐ¸Ð·Ñ‹ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð½ÐµÑ‚Ñƒ Ð² Ð¸Ð¸Ð½Ñ„Ð¾Ñ„Ð»Ð¾Ñ‚Ðµ*/
+    public function RebaceCruis()
+    {
+        global $shipKey;
+
+        $ships = $this->GetShipsList();
+        /*ÐŸÐµÑ€ÐµÐ±ÐµÑ€Ð°ÐµÐ¼ ÑÑ‚Ð¾Ñ‚ ÑÐ¿Ð¸ÑÐ¾Ðº ÐºÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐºÐ¾Ð²*/
+        foreach ($ships as $key => $ship)
+        {
+            /*ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº ÐºÑ€ÑƒÐ¸Ð·Ð¾Ð² Ñ‚ÐµÐ¿Ð»Ð¾Ñ…Ð¾Ð´Ð°*/
+            $CruisList=$this->GetShipCruisList($ship->id);
+            /*Ð¡Ð¿Ð¸ÑÐ¾Ðº ÐºÑ€ÑƒÐ¸Ð·Ð¾Ð² Ð˜Ð½Ñ„Ð¾Ñ„Ð»Ð¾Ñ‚Ð°*/
+            $InfoflotCruisList = $this->InfoflotGetCruisList($ship->TV['t_inner_id']);
+            /*ÐŸÐµÑ€ÐµÐ±ÐµÑ€Ð°ÐµÐ¼ Ð¸Ñ… Ð¸ ÑÑ€Ð°Ð²Ð½Ð¸Ð²Ð°ÐµÐ¼ Ñ Ð±Ð°Ð·Ð¾Ð¹ Ð¸Ð½Ñ„Ð¾Ñ„Ð»Ð¾Ñ‚Ð°*/
+            foreach($CruisList as $cruis)
+            {
+                if(isset($InfoflotCruisList[$cruis->TV['kr_inner_id']]))
+                {
+                   // echo $ship->title." cruis inner_id = ".$cruis->TV['kr_inner_id'].' status = EXIST'."\n";
+                }
+                else
+                {
+                    echo $ship->title." cruis inner_id = ".$cruis->TV['kr_inner_id'].' status = DELETED'."\n";
+                    PageDelete($cruis->id);
+                }
+            }
+        }
+    }
+
+    /*Ð²Ñ‹Ð´Ð°ÐµÑ‚ ÐºÐ°ÑŽÑ‚Ñƒ Ð¿Ð¾ Ð²Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÐµÐ¼Ñƒ Ð½Ð¾Ð¼ÐµÑ€Ñƒ*/
+    function GetCautaByItterID($crus_id,$cauta_inner_id)
+    {
+        $res= new stdClass();
+        $res->id=0;
+        $modx_cauta_list=$this->GetCautaList($crus_id);
+        foreach($modx_cauta_list as $cauta)
+        {
+            if($cauta->TV['k_inner_id']==$cauta_inner_id) $res=$cauta;
+        }
+        return $res;
+    }
+
+    function UpdateCauts()
+    {
+        global $modx;
+        global $table_prefix;
+        global $shipKey;
+        /*Ð¢Ð•Ð¿ÐµÑ€Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÐ¼ ÐºÐ°ÑŽÑ‚Ñ‹*/
+
+        $ships=$this->GetShipsList();
+        /*ÐŸÐµÑ€ÐµÐ±ÐµÑ€Ð°ÐµÐ¼ ÑÑ‚Ð¾Ñ‚ ÑÐ¿Ð¸ÑÐ¾Ðº*/
+        foreach($ships as $key=>$ship)
+        {
+            echo "********// ship ".$ship->title."\r\n";
+            $modx_cruis_list=$this->GetShipCruisList($ship->id);
+            foreach($modx_cruis_list as $modx_cruis)
+            {
+
+
+                $URL='http://api.infoflot.com/JSON/'.
+                    $this->shipKey.'/CabinsStatus/'.$ship->TV['t_inner_id'].'/'.$modx_cruis->TV['kr_inner_id']."/";
+
+                $cauta_list=json_decode(file_get_contents($URL), true);
+
+                foreach($cauta_list as $id=>$cauta)
+                {
+                    echo "********* cauta".$cauta['name']."\r\n";
+                    $obj = new stdClass();
+                    $obj->pagetitle=$ship->alias."-".$modx_cruis->alias."-".$id."_".$cauta['name'];
+                    $obj->parent=$modx_cruis->id;
+                    $obj->template=$this->CautaTemplate;
+                    $obj->TV['k_name']=$cauta['name'];
+                    $obj->TV['k_type']=$cauta['type'];
+                    $obj->TV['k_deck']=$cauta['deck'];
+                    $obj->TV['k_separate']=$cauta['separate'];
+                    $obj->TV['k_status']=$cauta['status'];
+                    $obj->TV['k_gender']=$cauta['gender'];
+                    $obj->TV['k_inner_id']=$id;
+
+                    $obj->TV['k_places']='';
+                    $places=$cauta['places'];
+                    foreach($places as $place_id=>$place)
+                    {
+                        $obj->TV['k_places'].="ID:".$place_id."-NAME:".$place['name']."-TYPE:".$place['type']."-POSITION:".$place['position']."-STATUS:".$place['status']."||";
+                    }
+
+                    $obj->alias = encodestring($obj->pagetitle);
+                    $obj->url="ships/".$ship->alias."/".$modx_cruis->alias."/" . $obj->alias.".html";
+
+                    //  echo "=================== ÐšÐ°ÑŽÑ‚Ð° \r\n";
+                    // print_r($obj);
+
+                    $mod_cauta=$this->GetCautaByItterID($modx_cruis->id,$id);
+                    if($mod_cauta->id==0)
+                    {
+                        /*ÐÐµÑ‚ Ñ‚Ð°ÐºÐ¾Ð¹ ÐºÐ°ÑŽÑ‚Ñ‹*/
+                        IncertPage($obj);
+                        echo $ship->title." INSERT CAUTA ".$id;
+                    }
+                    else
+                    {
+                        IncertPageTV($mod_cauta->id, 'k_name', $obj->TV['k_name']);
+                        IncertPageTV($mod_cauta->id, 'k_type', $obj->TV['k_type']);
+                        IncertPageTV($mod_cauta->id, 'k_deck', $obj->TV['k_deck']);
+                        IncertPageTV($mod_cauta->id, 'k_separate', $obj->TV['k_separate']);
+                        IncertPageTV($mod_cauta->id, 'k_status', $obj->TV['k_status']);
+                        IncertPageTV($mod_cauta->id, 'k_gender', $obj->TV['k_gender']);
+                        IncertPageTV($mod_cauta->id, 'k_places', $obj->TV['k_places']);
+                        IncertPageTV($mod_cauta->id, 'k_inner_id', $obj->TV['k_inner_id']);
+                        echo $ship->title." UPDATE CAUTA ".$id;
+                    }
+
+
+                    // $cruis_inner_id=$obj->TV['kr_inner_id'];
+
+                }
+            }
+
+
+            /*  */
+
+        }
+    }
+
+    //Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ñ‚ÑƒÑ€Ð¾Ð² Ð´Ð»Ñ Ñ‚ÐµÐ¿Ð»Ð¾Ñ…Ð¾Ð´Ð°
     function LoadShipsTours()
     {
         global $shipKey;
 
         $Ships = $this->GetShipsList();
 
-        /*Ïåðåáåðàåì ýòîò ñïèñîê*/
+        /*ÐŸÐµÑ€ÐµÐ±ÐµÑ€Ð°ÐµÐ¼ ÑÑ‚Ð¾Ñ‚ ÑÐ¿Ð¸ÑÐ¾Ðº*/
         foreach ($Ships as $key => $Ship) {
-            echo "Êîðáåëü \r\n";
-            /*Çàãðóæàåì ñïèñîê êðóèçîâ äëÿ òåïëîõîäà*/
+            echo "ÐšÐ¾Ñ€Ð±ÐµÐ»ÑŒ \r\n";
+            /*Ð—Ð°Ð³Ñ€ÑƒÐ¶Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº ÐºÑ€ÑƒÐ¸Ð·Ð¾Ð² Ð´Ð»Ñ Ñ‚ÐµÐ¿Ð»Ð¾Ñ…Ð¾Ð´Ð°*/
             $URL = 'http://api.infoflot.com/JSON/' . $this->shipKey . '/Tours/' . $Ship->TV['t_inner_id'] . '/';
             echo $URL . "<br>";
             $cruis_list = json_decode(file_get_contents($URL), true);
-            /*Ïåðåáèðàåì ýòîò ñïèñîê*/
+            /*ÐŸÐµÑ€ÐµÐ±Ð¸Ñ€Ð°ÐµÐ¼ ÑÑ‚Ð¾Ñ‚ ÑÐ¿Ð¸ÑÐ¾Ðº*/
 
             foreach ($cruis_list as $id => $cruis) {
                 //echo $cruis['name']."\r\n";
@@ -189,8 +360,8 @@ class ILoader extends Ship
                 $cruis['id'] = $id;
                 $cruis['ship_id'] = $Ship->id;
 
-                /* 1 ñâåðêà ñ íàøåé áàçîé*/
-                /*Ïðîâåðÿåì åñòü ëè òàêîé êðóèç â íàøåé áàçå*/
+                /* 1 ÑÐ²ÐµÑ€ÐºÐ° Ñ Ð½Ð°ÑˆÐµÐ¹ Ð±Ð°Ð·Ð¾Ð¹*/
+                /*ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÐµÑÑ‚ÑŒ Ð»Ð¸ Ñ‚Ð°ÐºÐ¾Ð¹ ÐºÑ€ÑƒÐ¸Ð· Ð² Ð½Ð°ÑˆÐµÐ¹ Ð±Ð°Ð·Ðµ*/
                 $cruis_info = $this->GetCruisByInnerID($Ship->id, $id);
                 if ($cruis_info == 0) {
                     $this->IncertCruis($Ship, $cruis);
@@ -199,55 +370,11 @@ class ILoader extends Ship
                     $this->UpdateCruis($cruis_info, $Ship, $cruis);
                     echo "SHIP = " . $Ship->title . " Cruis inner_id=" . $cruis['id'] . "  status = UPDATE \r\n";
                 }
-                /*Íóæíî åùå óäàëèòü òåõ ÷òî íåò â áàçå èíôëîòà*/
-                /* 2 ñâåðêà ñ áàçîé íèôîôëîòà*/
 
 
-                /*Çàãðóæàåì ýêñêóðñèè*/
-                /*  echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                  ";
-                  echo "ýêñêóðñèè
-                  ";
-                  $URL='http://api.infoflot.com/JSON/'.$this->shipKey.'/Excursions/'.$Ship->TV['t_inner_id'].'/'.$cruis_inner_id."/";
-                  echo $URL."<br>";
-                  $ex_list=json_decode(file_get_contents($URL), true);
-                  foreach($ex_list as $ex_inner_id=>$ex)
-                  {
-
-                      ob_flush();
-                      flush(); //ie working must
-                      $obj2 = new stdClass();
-
-                      $obj2->pagetitle=$ex_inner_id."_".$ex['city'];
-                      $obj2->parent=$cruis_id;
-                      $obj2->template=$this->ExTemplate;
-                      $obj2->TV['ex_city']=$ex['city'];
-                      $obj2->TV['ex_date_start']=$ex['date_start'];
-                      $obj2->TV['ex_time_start']=$ex['time_start'];
-                      $obj2->TV['ex_date_end']=$ex['date_end'];
-                      $obj2->TV['ex_time_end']=$ex['time_end'];
-                      $obj2->TV['ex_description']=$ex['description'];
-
-
-                      $obj2->alias = encodestring($ex_inner_id."_".$obj2->pagetitle);
-                      $obj2->url="ships/".$Ship->alias."/".$cruis_alias."/".$obj2->alias . ".html";
-                      //  print_r($obj2);
-                      IncertPage($obj2);
-                  }*/
 
             }
         }
-
-        /*Âñòàâëÿåì ñòðàíöû ãîðîäîâ*/
-        /*   foreach($cities as $city=>$val)
-           {
-               $obj2 = new stdClass();
-
-               $obj2->pagetitle=$city;
-               $obj2->parent=$this->CityParent;
-               $obj2->template=$this->CityTemplate;
-               IncertPage($obj2);
-           }*/
-
+        $this->RebaceCruis();
     }
 }

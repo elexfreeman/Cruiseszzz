@@ -130,7 +130,7 @@
                                 <input id="agreement" type="checkbox" name="agreement" value="1"  class="bron-radio-p w-checkbox-input">
                                 <label for="agreement" class="w-form-label"> Я даю свое согласие на обработку
                                     персональных данных и соглашаюсь с </label>
-                                <span class="agreementspan" onclick="$('#ModalAgrement').modal('show');">условиями и политикой конфиденциальности</span>
+                                <span class="agreementspan" onclick="Bron2.Agrement();">условиями и политикой конфиденциальности</span>
                             </div>
                         </div>
                         <input type="button" value="Заказать круиз" onclick="Bron2.BronClick();" class="w-button bronbuttonsubmit bron">

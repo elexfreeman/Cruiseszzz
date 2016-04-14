@@ -85,7 +85,7 @@ $sql_ship="
 						on tv.id=cv.tmplvarid
 
 
-						where (ships.parent=2)and(tv.name='t_in_filtr')
+						where (ships.parent=2)and(tv.name='t_in_filtr')and(ships.deleted=0)
 
 						) ships_tbl
 					-- ********************************
@@ -120,7 +120,7 @@ $sql="select * from
 					)
 		)
 
-		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_cities')
+		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_cities')and(kr.deleted=0)
 ) 	cities_start
 
 
@@ -153,7 +153,7 @@ $sql="select * from
              )
             )
 
-            and(kr.template=3 )and(tv.name='kr_weekend')
+            and(kr.template=3 )and(tv.name='kr_weekend')and(kr.deleted=0)
     ) 	weekend
       on cities_start.kr_cities_start_id=kr_weekend_id
 
@@ -184,7 +184,7 @@ join
 					)
 		)
 
-		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_cities')
+		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_cities')and(kr.deleted=0)
 ) 	cities
 on cities_start.kr_cities_start_id=kr_city_id
 
@@ -212,7 +212,7 @@ join
 					)
 		)
 
-		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_date_start')
+		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_date_start')and(kr.deleted=0)
 ) 	date_start
 on cities_start.kr_cities_start_id=kr_date_start_id
 
@@ -241,7 +241,7 @@ join
 					)
 		)
 
-		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_date_end')
+		and(kr.template=".$this->CruisTemplate." )and(tv.name='kr_date_end')and(kr.deleted=0)
 ) 	date_end
 on cities_start.kr_cities_start_id=date_end.kr_date_end_id
 ".$having."
