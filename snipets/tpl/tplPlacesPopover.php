@@ -12,26 +12,26 @@
 
         <?php
 
-        foreach ($this->data['places'] as $place) {
+        foreach ($this->data->places as $id=>$place) {
 
-            $place = explode('-', $place);
+         /*   $place = explode('-', $place);
 
             $place_id = explode(':', $place[0]);
             $place_name = explode(':', $place[1]);
             $place_type = explode(':', $place[2]);
             $place_position = explode(':', $place[3]);
-            $place_status = explode(':', $place[4]);
+            $place_status = explode(':', $place[4]);*/
             if ($place_name[1] != '')
             {
                 ?>
 
                 <div class="w-clearfix cruistableitem place">
                     <div class="cruistablecol col-place">
-                        <div onclick="Bron2.PlaceSelect('<?php echo $place_id[1]; ?>')"
+                        <div onclick="Bron2.PlaceSelect('<?php echo $id; ?>')"
                              id="place_<?php echo $place_id[1]; ?>"
-                             class="cruischkBox click cauta-select2" place_id="<?php echo $place_id[1]; ?>"></div>
-                        <div class="crchktext">Место: <?php echo $this->ConvertPlaceNumber($place_id[1]); ?></div>
-                        <input type="hidden" id="placeInput_<?php echo $place_id[1]; ?>" name="placeInput_<?php echo $place_id[1]; ?>" value="0">
+                             class="cruischkBox click cauta-select2" place_id="<?php echo $id; ?>"></div>
+                        <div class="crchktext">Место: <?php echo $this->ConvertPlaceNumber($id); ?></div>
+                        <input type="hidden" id="placeInput_<?php echo $id; ?>" name="placeInput_<?php echo $id; ?>" value="0">
                     </div>
                 </div>
 

@@ -405,6 +405,7 @@ Bron2.PlaceSelect = function(place_id)
 Bron2.CautaClick = function(cruis_id,cauta_number)
 {
     $('#BronModalV2').modal('show');
+    $('.CautaClick').popover('hide');
     $.ajax({
         type: 'GET',
         url: '/ajax-bron.html',
@@ -445,8 +446,13 @@ Bron2.InitBronModal = function(data)
    if(parseInt(data.free_place)>0)
    {
        $.each( data.places, function(i, place){
-           if(place.status==0) $('.bronmodalplacebox').append('<div class="bronmodalplaceitem place-selector" place="'+place.inner_number+'">№'+place.number+'</div>');
-           if(place.status==1) $('.bronmodalplacebox').append('<div class="bronmodalplaceitem full">(занято)</div>');
+console.info(i);
+
+               if(parseInt(place.status)==0) $('.bronmodalplacebox').append('<div class="bronmodalplaceitem place-selector" place="'+i+'">№'+place.name+'</div>');
+               if(parseInt(place.status)==1) $('.bronmodalplacebox').append('<div class="bronmodalplaceitem full">(занято)</div>');
+
+
+
        });
 
        $('.noPlace').hide();
@@ -473,6 +479,8 @@ Bron2.BronTabClick = function()
     $('.bronbuttons').removeClass('by');
     $('.bronbuttons').addClass('bron');
     $('.bronbuttonsubmit').removeClass('pay');
+    $(".modal").animate({scrollTop: (500)}, 1000);
+
 
 }
 Bron2.PayTabClick = function()
@@ -482,7 +490,7 @@ Bron2.PayTabClick = function()
     $('.bronbuttons').removeClass('bron');
     $('.bronbuttons').addClass('by');
     $('.bronbuttonsubmit').addClass('pay');
-
+    $(".modal").animate({scrollTop: (500)}, 1000);
 
 }
 
@@ -609,6 +617,19 @@ $(function() {
     var obsh = document.getElementsByClassName('CautaClick');
     var elems = $('.CautaClick').nextAll();
     var lastID = elems.length - 1;
+    /*Определяем точное кол-во кают*/
+    var count_c=0;
+    for (var i = 0; i < lastID; i++) {
+        $(obsh[i]).attr('id', "cauta_number_" + $(obsh[i]).html());
+        var ee = obsh[i];
+        if (parseInt($(ee).html()) > 0) count_c++;
+    }
+
+    $( "#progressbar" ).progressbar({
+        max: count_c
+    });
+    console.info( $( "#progressbar" ).attr('aria-valuemax'));
+
     for (var i = 0; i < lastID; i++) {
         $(obsh[i]).attr('id',"cauta_number_"+$(obsh[i]).html());
         var ee=obsh[i];
@@ -636,6 +657,15 @@ $(function() {
                         $('#cauta_number_'+data.popover_number).css('fill','black');
                         $('#cauta_number_'+data.popover_number).addClass('popover1');
                         $('#cauta_number_'+data.popover_number).popover({html: true});
+                  var progress =  $( "#progressbar" ).progressbar( "value" );
+                  $( "#progressbar" ).progressbar( "value", (progress+1) );
+                    if($( "#progressbar" ).attr('aria-valuemax')==(progress+1))
+                    {
+                        $('.ship-loader').fadeOut();
+                        $('.ship-paluba').fadeIn();
+
+                    }
+
 
                 })
                 .fail(function() {
@@ -813,67 +843,74 @@ $(function() {
 
 Bron2.PayClick = function()
 {
-    var payForm = $('#wf-form-BronModalForm-pay').serializeArray();
+    if( $('.bronbuttonsubmit.pay').prop('disabled')==false)
+    {
+        var payForm = $('#wf-form-BronModalForm-pay').serializeArray();
 
-    $('.bronbuttonsubmit.pay').prop('disabled',true);
-    $('.bronbuttonsubmit.pay').val('Подождите...');
+        $('.bronbuttonsubmit.pay').prop('disabled',true);
+        $('.bronbuttonsubmit.pay').val('Подождите...');
 
-    $("input").removeClass('error_class');
-    $('.PayButtons.agreement').removeClass('alert');
- $.ajax({
-        type: 'GET',
-        url: '/ajax-bron.html',
-        data: payForm,
-        dataType : "json",
-        success: function(data) {
+        $("input").removeClass('error_class');
+        $('.PayButtons.agreement').removeClass('alert');
+        $.ajax({
+            type: 'GET',
+            url: '/ajax-bron.html',
+            data: payForm,
+            dataType : "json",
+            success: function(data) {
 
-            if(data.error==1)
-            {
-                $.each( data.errors_list, function(i, error){
-                    console.info(i,error);
-                    $("input[name="+i+"]").addClass('error_class');
-                });
-                /*agreement*/
-                if(data.agreement==1)
+                if(data.error==1)
                 {
-                    $('.PayButtons.agreement').addClass('alert');
+                    $.each( data.errors_list, function(i, error){
+                        console.info(i,error);
+                        $("input[name="+i+"]").addClass('error_class');
+                    });
+                    /*agreement*/
+                    if(data.agreement==1)
+                    {
+                        $('.PayButtons.agreement').addClass('alert');
 
+                    }
+                    $('.bronbuttonsubmit.pay').prop('disabled',false);
+                    $('.bronbuttonsubmit.pay').val('Заказать круиз');
                 }
-                $('.bronbuttonsubmit.pay').prop('disabled',false);
-                $('.bronbuttonsubmit.pay').val('Заказать круиз');
-            }
-            else
-            {
-                /*переходим к оплате*/
-
-                $('#ModalBron').modal('show');
-                $('#BronModalV2').modal('hide');
-                $('#modal-born-body').html(data.text_body);
-                $('#modal-bron-title').html(data.status_text);
-                if((data.id>0)&&(data.infoflot!='null'))
+                else
                 {
-                    /*   var url='https://b2c.appex.ru/payment/choice?orderSourceCode='+data.id+'&billingCode=BergturSamara003&returnUrl=http://berg-kruiz.ru/payment/';
-                     //var url='https://b2c.appex.ru/payment/choice?orderSourceCode='+data.id+'&billingCode=BergturSamara003';
-                     setTimeout(function() {
-                     window.location.href = url;
-                     //console.info(url);
+                    /*переходим к оплате*/
 
-                     },3000);*/
-                    /*apex*/
-                    // var url='https://b2c.appex.ru/payment/choice?orderSourceCode='+data.id+'&billingCode=BergturSamara003&returnUrl=http://berg-kruiz.ru/payment/';
-                    /*robokassa*/
-                    $('#robokassa').html(data.robo_form);
-                    setTimeout(function() {$('#z-robo-form').submit();},4000);
-                    //window.location.href = url;
+                    $('#ModalBron').modal('show');
+                    $('#BronModalV2').modal('hide');
+                    $('#modal-born-body').html(data.text_body);
+                    $('#modal-bron-title').html(data.status_text);
+                    if((data.id>0)&&(data.infoflot!='null'))
+                    {
+                        /*   var url='https://b2c.appex.ru/payment/choice?orderSourceCode='+data.id+'&billingCode=BergturSamara003&returnUrl=http://berg-kruiz.ru/payment/';
+                         //var url='https://b2c.appex.ru/payment/choice?orderSourceCode='+data.id+'&billingCode=BergturSamara003';
+                         setTimeout(function() {
+                         window.location.href = url;
+                         //console.info(url);
 
+                         },3000);*/
+                        /*apex*/
+                        // var url='https://b2c.appex.ru/payment/choice?orderSourceCode='+data.id+'&billingCode=BergturSamara003&returnUrl=http://berg-kruiz.ru/payment/';
+                        /*robokassa*/
+                        $('#robokassa').html(data.robo_form);
+                        setTimeout(function() {$('#z-robo-form').submit();},4000);
+                        //window.location.href = url;
+
+                    }
                 }
-            }
 
-        },
-        error:  function(xhr, str){
-            $('.alert').html('Возникла ошибка: ' + xhr.responseCode);
-        }
-    });
+            },
+            error:  function(xhr, str){
+                $('.alert').html('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+    }
+
+
+
+
 }
 
 
@@ -881,56 +918,96 @@ Bron2.PayClick = function()
 
 Bron2.BronClick = function()
 {
-    var bronForm = $('#wf-form-BronModalForm-bron').serializeArray();
 
-    $('.bronbuttonsubmit.bron').prop('disabled',true);
-    $('.bronbuttonsubmit.bron').val('Подождите...');
+    if( $('.bronbuttonsubmit.bron').prop('disabled')==false)
+    {
+        var bronForm = $('#wf-form-BronModalForm-bron').serializeArray();
 
-    $("input").removeClass('error_class');
-    $('.PayButtons.agreement').removeClass('alert');
-    $.ajax({
-        type: 'GET',
-        url: '/ajax-bron.html',
-        data: bronForm,
-        dataType : "json",
-        success: function(data) {
+        $('.bronbuttonsubmit.bron').prop('disabled',true);
+        $('.bronbuttonsubmit.bron').val('Подождите...');
 
-            if(data.error==1)
-            {
-                $.each( data.errors_list, function(i, error){
-                    console.info(i,error);
-                    $("input[name="+i+"]").addClass('error_class');
-                });
-                /*agreement*/
-                if(data.agreement==1)
+        $("input").removeClass('error_class');
+        $('.PayButtons.agreement').removeClass('alert');
+        $.ajax({
+            type: 'GET',
+            url: '/ajax-bron.html',
+            data: bronForm,
+            dataType : "json",
+            success: function(data) {
+
+                if(data.error==1)
                 {
-                    $('.PayButtons.agreement').addClass('alert');
+                    $.each( data.errors_list, function(i, error){
+                        console.info(i,error);
+                        $("input[name="+i+"]").addClass('error_class');
+                    });
+                    /*agreement*/
+                    if(data.agreement==1)
+                    {
+                        $('.PayButtons.agreement').addClass('alert');
+
+                    }
+                    $('.bronbuttonsubmit.bron').prop('disabled',false);
+                    $('.bronbuttonsubmit.bron').val('Заказать круиз');
+                }
+                else
+                {
+                    /*переходим к оплате*/
+
+                    $('#ModalBron').modal('show');
+                    $('#BronModalV2').modal('hide');
+                    $('#modal-born-body').html(data.text_body);
+                    $('#modal-bron-title').html(data.status_text);
 
                 }
-                $('.bronbuttonsubmit.bron').prop('disabled',false);
-                $('.bronbuttonsubmit.bron').val('Заказать круиз');
+
+            },
+            error:  function(xhr, str){
+                $('.alert').html('Возникла ошибка: ' + xhr.responseCode);
             }
-            else
-            {
-                /*переходим к оплате*/
+        });
+    }
 
-                $('#ModalBron').modal('show');
-                $('#BronModalV2').modal('hide');
-                $('#modal-born-body').html(data.text_body);
-                $('#modal-bron-title').html(data.status_text);
 
-            }
-
-        },
-        error:  function(xhr, str){
-            $('.alert').html('Возникла ошибка: ' + xhr.responseCode);
-        }
-    });
 }
 
 /*Показывает окно ссоглашения и убирает модал брони*/
 Bron2.Agrement = function()
 {
     $('#ModalAgrement').modal('show');
-    $('#BronModalV2').modal('hide');
+   // $('#BronModalV2').modal('hide');
 }
+
+$(function () {
+   /* $('#ModalAgrement').on('hidden.bs.modal', function (e) {
+        setTimeout(function () {
+            console.info('1212');
+            $('#BronModalV2').modal('show');
+        }, 1500);
+
+    }) ;
+    $('#ModalAgrement').on('shown.bs.modal', function (e) {
+        setTimeout(function () {
+            console.info('1212');
+            $('#BronModalV2').modal('hide');
+        }, 1500);
+
+    })*/
+})
+
+
+$(function() {
+    $( "#progressbar" ).progressbar({
+        value: 0
+    });
+
+    $(".cautaDescription").popover({html: true});
+
+    $( ".cautaDescription" ).hover(
+        function() {
+            $(this).popover('show');
+        }, function() {
+            $(this).popover('hide');
+        }
+    );
+});

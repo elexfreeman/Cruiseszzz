@@ -110,6 +110,17 @@
         height: auto;
         margin-top: 10px;
     }
+
+    .bronbuttons.by {
+        overflow: visible;
+        height: auto;
+        padding: 34px 0px 45px;
+        background-image: none;
+        background-position: 0px 0px;
+        background-size: auto;
+        background-repeat: repeat;
+        text-align: center;
+    }
 }
 
 @media (max-width: 479px) {

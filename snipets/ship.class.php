@@ -120,6 +120,12 @@ class Ship
         $ship=GetPageInfo($content_id);
         return $ship->TV['t_inner_id'];
     }
+     /*получить InnerID корабля*/
+    function GetCruisInnerID($content_id)
+    {
+        $cruis=GetPageInfo($content_id);
+        return $cruis->TV['kr_inner_id'];
+    }
 
 
     /*Информация в ввиде объекта о корабля по его внутреннему номеру*/

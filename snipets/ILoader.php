@@ -102,6 +102,39 @@ class ILoader extends Ship
         }
     }
 
+    /*Информация о каюте с инфофлота*/
+    function GetCautaInfoInfoflot($ship_inner_id,$cruis_inner_id,$cauta_nomer)
+    {
+        $URL='http://api.infoflot.com/JSON/'.
+            $this->shipKey.'/CabinsStatus/'.$ship_inner_id.'/'.$cruis_inner_id."/";
+
+        $cauta_list=json_decode(file_get_contents($URL), true);
+        $obj = new stdClass();
+        $obj->responce=$cauta_list;
+        $obj->id=0;
+        $obj->url=$URL;
+        foreach($cauta_list as $id=>$cauta)
+        {
+            if($cauta_nomer==$cauta['name'])
+            {
+                $obj->nomer=$cauta['name'];
+                $obj->type=$cauta['type'];
+                $obj->deck=$cauta['deck'];
+                $obj->separate=$cauta['separate'];
+                $obj->status=$cauta['status'];
+                $obj->gender=$cauta['gender'];
+                $obj->id=$id;
+                $obj->places=$cauta['places'];
+                /* foreach($places as $place_id=>$place)
+                 {
+                     $obj->places.="ID:".$place_id."-NAME:".$place['name']."-TYPE:".$place['type']."-POSITION:".$place['position']."-STATUS:".$place['status']."||";
+                 }*/
+            }
+        }
+        return $obj;
+    }
+
+
     public function UpdateCruis($cruis_id, $ship, $cruis)
     {
 
@@ -323,16 +356,9 @@ class ILoader extends Ship
                         IncertPageTV($mod_cauta->id, 'k_inner_id', $obj->TV['k_inner_id']);
                         echo $ship->title." UPDATE CAUTA ".$id;
                     }
-
-
                     // $cruis_inner_id=$obj->TV['kr_inner_id'];
-
                 }
             }
-
-
-            /*  */
-
         }
     }
 

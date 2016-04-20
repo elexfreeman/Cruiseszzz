@@ -67,7 +67,7 @@
      </font>
      <style type="text/css">
          <![CDATA[
-         @font-face { font-family:"PT Sans";src:url("#FontID0") format(svg)}
+        /* @font-face { font-family:"PT Sans";src:url("#FontID0") format(svg)}*/
          .str24 {stroke:#CCCCCC;stroke-width:20}
          .str23 {stroke:black;stroke-width:7.62}
          .str5 {stroke:gray;stroke-width:7.62}
@@ -138,15 +138,15 @@
          .fil14 {fill:white}
          .fil15 {fill:gray;fill-rule:nonzero}
          .fil12 {fill:#E6E6E6;fill-rule:nonzero}
-         .fnt2 {font-weight:normal;font-size:138.69px;font-family:'PT Sans'}
-         .fnt3 {font-weight:normal;font-size:196.1px;font-family:'PT Sans'}
-         .fnt6 {font-weight:normal;font-size:241.82px;font-family:'PT Sans'}
-         .fnt0 {font-weight:normal;font-size:241.89px;font-family:'PT Sans'}
-         .fnt5 {font-weight:normal;font-size:298.63px;font-family:'PT Sans'}
-         .fnt1 {font-weight:normal;font-size:322.49px;font-family:'PT Sans'}
-         .fnt4 {font-weight:normal;font-size:322.55px;font-family:'PT Sans'}
-         .fnt8 {font-weight:normal;font-size:483.75px;font-family:'PT Sans'}
-         .fnt7 {font-weight:normal;font-size:483.76px;font-family:'PT Sans'}
+         .fnt2 {font-weight:normal;font-size:138.69px;}
+         .fnt3 {font-weight:normal;font-size:196.1px;}
+         .fnt6 {font-weight:normal;font-size:241.82px;}
+         .fnt0 {font-weight:normal;font-size:241.89px;}
+         .fnt5 {font-weight:normal;font-size:298.63px;}
+         .fnt1 {font-weight:normal;font-size:322.49px;}
+         .fnt4 {font-weight:normal;font-size:322.55px;}
+         .fnt8 {font-weight:normal;font-size:483.75px;}
+         .fnt7 {font-weight:normal;font-size:483.76px;}
          ]]>
      </style>
  </defs>
@@ -1651,12 +1651,12 @@
          .fil3 {fill:#D6FFF6}
          .fil1 {fill:#E9FFDE}
          .fil4 {fill:#F2CB99}
-         .fnt1 {font-weight:normal;font-size:138.69px;font-family:'PT Sans'}
-         .fnt2 {font-weight:normal;font-size:196.1px;font-family:'PT Sans'}
-         .fnt3 {font-weight:normal;font-size:241.89px;font-family:'PT Sans'}
-         .fnt4 {font-weight:normal;font-size:298.63px;font-family:'PT Sans'}
-         .fnt0 {font-weight:normal;font-size:322.49px;font-family:'PT Sans'}
-         .fnt5 {font-weight:normal;font-size:483.75px;font-family:'PT Sans'}
+         .fnt1 {font-weight:normal;font-size:138.69px;}
+         .fnt2 {font-weight:normal;font-size:196.1px;}
+         .fnt3 {font-weight:normal;font-size:241.89px;}
+         .fnt4 {font-weight:normal;font-size:298.63px;}
+         .fnt0 {font-weight:normal;font-size:322.49px;}
+         .fnt5 {font-weight:normal;font-size:483.75px;}
          ]]>
      </style>
  </defs>

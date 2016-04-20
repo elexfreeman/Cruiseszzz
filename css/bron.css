@@ -352,3 +352,18 @@ text.CautaClick
     margin: 20px auto;
     padding: 10px;
 }
+
+.ship-loader
+{
+   /* display: none;*/
+}
+
+.ship-paluba
+{
+    display: none;
+}
+
+#BronModalV2 .modal-dialog.modal-lg
+{
+    margin: 0;
+}

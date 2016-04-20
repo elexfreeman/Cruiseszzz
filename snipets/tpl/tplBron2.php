@@ -131,8 +131,13 @@
         if((int)$data['ship']->id==19436)
         {
             ?>
-            <h3 class="cruisformh3">Чтобы забронировать или выкупить каюту - нажмите на нее</h3>
+            <div class="ship-loader">
+                <h3 class="cruisformh3">Загрузка информации о наличии мест в каютах</h3>
+                <div id="progressbar"></div>
+            </div>
+
                 <div class="ship-paluba">
+                    <h3 class="cruisformh3">Чтобы забронировать или выкупить каюту - нажмите на нее</h3>
                 <?php include 'ships/tplAlexNevsky.php'; ?>
 
                 </div>

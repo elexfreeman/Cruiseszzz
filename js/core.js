@@ -9,6 +9,11 @@ function Scroll(id) {
 
 
 $(function() {
+
+    /*Размеры окна*/
+    myWidth = document.documentElement.clientWidth;
+    console.info(myWidth);
+
     $( ".cauta-select" ).click(function() {
         $( ".cauta-select").removeClass('chk');
         $(this).addClass('chk');
