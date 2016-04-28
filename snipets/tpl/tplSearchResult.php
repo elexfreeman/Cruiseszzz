@@ -18,6 +18,27 @@ LEFT JOIN modx_site_tmplvars tv ON tv.id=cv.tmplvarid
 WHERE (kr.parent IN (19430)) AND(kr.template=3) AND(tv.name='kr_weekend')) weekend
 ON cities_start.kr_cities_start_id=kr_weekend_id
 */
+
+
+
+if((isset($_GET['date_start']))and($_GET['date_start']!=''))
+{
+	$_GET['date_start'] = strtotime( $_GET['date_start'] );
+	$_GET['date_start'] = date( 'Y-m-d', $_GET['date_start'] );
+}
+
+if((isset($_GET['date_stop']))and($_GET['date_stop']!=''))
+{
+	$_GET['date_stop'] = strtotime( $_GET['date_stop'] );
+	$_GET['date_stop'] = date( 'Y-m-d', $_GET['date_stop'] );
+}
+
+
+
+
+
+
+
 $search_date_text="Любая";
 if ((isset($_GET['city_start']))and($_GET['city_start']!=''))
 {

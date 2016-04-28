@@ -160,6 +160,7 @@ class Ship
 
 
                     where (ships.parent=".$this->ShipsParent.")and(tv.name='t_in_filtr')
+                    and(ships.deleted=0)
 
 ";
         //echo $sql;
@@ -679,7 +680,7 @@ order by cv.value
 
 
     /*Получает список круизов для теплохода*/
-    function GetShipCruisList($ship_id)
+    function GetShipCruisList($ship_id,$delete=false)
     {
         global $modx;
         global $table_prefix;
@@ -689,7 +690,7 @@ order by cv.value
         $obj = array();
         foreach ($modx->query($sql) as $row)
         {
-            $tem=GetPageInfo($row['id']);
+            $tem=GetPageInfo($row['id'],$delete);
            // if((isset($tem->TV['kr_route_name']))and($tem->TV['kr_route_name']!=''))
                 $obj[]=$tem;
         }

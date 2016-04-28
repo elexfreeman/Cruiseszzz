@@ -24,7 +24,7 @@ class ILoader extends Ship
     {
         $res = 0;
         /*Получаем список круизов теплохода*/
-        $cruis_list = $this->GetShipCruisList($ship_id);
+        $cruis_list = $this->GetShipCruisList($ship_id,false);
         /*Ищем наш круиз*/
         foreach ($cruis_list as $cruis) {
             if ($cruis->TV['kr_inner_id'] == $cruis_inner_id) {
@@ -161,6 +161,7 @@ class ILoader extends Ship
         $obj->TV['kr_surchage_meal_rub'] = $cruis['surchage_meal_rub'];
         $obj->TV['kr_surcharge_excursions_rub'] = $cruis['surcharge_excursions_rub'];
         $obj->echo = true;
+        PageRecover($cruis_id);
 
         $cruis_alias = $obj->alias;
 
@@ -217,6 +218,7 @@ class ILoader extends Ship
         global $shipKey;
         $URL = 'http://api.infoflot.com/JSON/' . $this->shipKey . '/Tours/' . $ship_inner_id . '/';
         $cruis_list = json_decode(file_get_contents($URL), true);
+        echo $URL;
         $objects=[];
         foreach ($cruis_list as $id => $cruis)
         {
@@ -263,7 +265,8 @@ class ILoader extends Ship
             {
                 if(isset($InfoflotCruisList[$cruis->TV['kr_inner_id']]))
                 {
-                   // echo $ship->title." cruis inner_id = ".$cruis->TV['kr_inner_id'].' status = EXIST'."\n";
+                    echo $ship->title." cruis inner_id = ".$cruis->TV['kr_inner_id'].' status = EXIST'."\n";
+                    PageRecover($cruis->id);
                 }
                 else
                 {
@@ -355,6 +358,7 @@ class ILoader extends Ship
                         IncertPageTV($mod_cauta->id, 'k_places', $obj->TV['k_places']);
                         IncertPageTV($mod_cauta->id, 'k_inner_id', $obj->TV['k_inner_id']);
                         echo $ship->title." UPDATE CAUTA ".$id;
+                        PageRecover($mod_cauta->id);
                     }
                     // $cruis_inner_id=$obj->TV['kr_inner_id'];
                 }
@@ -374,14 +378,13 @@ class ILoader extends Ship
             echo "Корбель \r\n";
             /*Загружаем список круизов для теплохода*/
             $URL = 'http://api.infoflot.com/JSON/' . $this->shipKey . '/Tours/' . $Ship->TV['t_inner_id'] . '/';
+
             echo $URL . "<br>";
             $cruis_list = json_decode(file_get_contents($URL), true);
             /*Перебираем этот список*/
 
             foreach ($cruis_list as $id => $cruis) {
                 //echo $cruis['name']."\r\n";
-                ob_flush();
-                flush(); //ie working must
 
                 $cruis['id'] = $id;
                 $cruis['ship_id'] = $Ship->id;
@@ -396,11 +399,10 @@ class ILoader extends Ship
                     $this->UpdateCruis($cruis_info, $Ship, $cruis);
                     echo "SHIP = " . $Ship->title . " Cruis inner_id=" . $cruis['id'] . "  status = UPDATE \r\n";
                 }
-
-
-
             }
         }
         $this->RebaceCruis();
     }
+
+
 }

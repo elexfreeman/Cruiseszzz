@@ -175,7 +175,7 @@ function encodestring($str) {
     return $str;
 }
 
-function GetPageInfo($page_id)
+function GetPageInfo($page_id,$delete=true)
 {
     global $modx;
     global $table_prefix;
@@ -183,7 +183,8 @@ function GetPageInfo($page_id)
     $product->id = 0;
     $sql = "select * from " . $table_prefix . "site_content
 
-    where (id=" . $page_id.")and(deleted=0)";
+    where (id=" . $page_id.")";
+    if($delete)  $sql.=" and(deleted=0)";
     foreach ($modx->query($sql) as $row) {
 
         $product->id = $row['id'];
@@ -213,9 +214,23 @@ function PageDelete($page_id)
     $sql="update  " . $table_prefix . "site_content
 set deleted=1
 where id=".$page_id;
-    echo $sql;
+    //echo $sql;
     $modx->query($sql);
 }
+
+/*Востановить удаленну страницу*/
+function PageRecover($page_id)
+{
+    global $modx;
+    global $table_prefix;
+    $sql="update  " . $table_prefix . "site_content
+set deleted=0
+where id=".$page_id;
+    echo $sql."\n";
+    $modx->query($sql);
+}
+
+
 
 //Инфо по продукту
 

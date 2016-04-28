@@ -49,6 +49,10 @@
 
 @media (max-width: 767px) {
 
+    .bronmodalinput {
+
+        width: 100%;
+    }
     .bronmodaltop {
         background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, .53), hsla(0, 0%, 100%, 0)), url("https://daks2k3a4ib2z.cloudfront.net/564c16bbf4a2b8d66d8d5070/56efe328803433e7393ac76e_top-form-bron-bg.jpg");
         background-image: linear-gradient(0deg, rgba(0, 0, 0, .53), hsla(0, 0%, 100%, 0)), url("https://daks2k3a4ib2z.cloudfront.net/564c16bbf4a2b8d66d8d5070/56efe328803433e7393ac76e_top-form-bron-bg.jpg");
@@ -125,6 +129,20 @@
 
 @media (max-width: 479px) {
 
+    .bron-phone-content
+    {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .bronmodalinput {
+
+        width: 100%;
+    }
+
+    #BronModalV2 .modal-dialog.modal-lg
+    {
+        margin: 0;
+    }
     .bron-modal {
         overflow: auto;
     }
@@ -159,4 +177,11 @@
     .bronbuttonsubmit {
         width: 100%;
     }
+}
+
+
+.w-input[readonly].bronmodalinput
+{
+    background-color: #ffffff;
+    cursor: pointer;
 }

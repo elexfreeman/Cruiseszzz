@@ -55,9 +55,9 @@
                             <input class="u_sex_0" type="hidden"  name="u_sex_0" value="1">
                             <input id="u_surname_0" type="text" placeholder="Фамилия" name="u_surname_0" required="required" class="w-input bronmodalinput">
                             <input id="u_name_0" type="text"  placeholder="Имя" name="u_name_0" required="required" class="w-input bronmodalinput">
-                            <input id="u_patronymic_0" type="text" placeholder="Отчество" name="u_patronymic_0" class="w-input bronmodalinput">
-                            <input id="u_birthday_0" type="text" placeholder="Дата рождения"
-                                   name="u_birthday_0" required="required" class="w-input bronmodalinput hasDatepicker2 u_birthday_0">
+                            <input id="u_patronymic_0" type="text" placeholder="Отчество" name="u_patronymic_0" class="w-input bronmodalinput ">
+                            <input  id="u_birthday_0"  placeholder="Дата рождения"
+                                   name="u_birthday_0" required="required" class="w-input bronmodalinput hasDatepickerBron u_birthday_0">
 
                             <div class="w-radio bron-radio" onclick="">
                                 <input onchange="Bron2.ImPassaj();" style='margin-top: 19px;' id="is_p_0" type="checkbox" name="is_p" value="Radio"  data-name="Radio" class="w-radio-input bron-radio-p">
@@ -128,7 +128,7 @@
                             <div class="w-checkbox">
                                 <div class="alert-input alert-agreement"></div>
                                 <input id="agreement" type="checkbox" name="agreement" value="1"  class="bron-radio-p w-checkbox-input">
-                                <label for="agreement" class="w-form-label"> Я даю свое согласие на обработку
+                                <label for="agreement" class="w-form-label aggr_text"> Я даю свое согласие на обработку
                                     персональных данных и соглашаюсь с </label>
                                 <span class="agreementspan" onclick="Bron2.Agrement();">условиями и политикой конфиденциальности</span>
                             </div>

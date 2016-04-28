@@ -10,8 +10,40 @@ function Scroll(id) {
 
 $(function() {
 
+    var date = new Date();
+    $("#dtBox").DateTimePicker({"language":"ru"});
+    myWidth = parseInt(document.documentElement.clientWidth);
+    if(myWidth<750)
+    {
+        //data-field="date"
+        $(".hasDatepicker3").attr("type","date");
+    }
+    else
+    {
+        //hasDatepicker3
+        $(".hasDatepicker3").addClass("date_picker");
+
+        $('#date_start').datetimepicker({
+            format:'Y-m-d',
+            lang:'ru',
+            timepicker:false,
+            closeOnDateSelect:true,
+        });
+
+        $('#date_stop').datetimepicker({
+            format:'Y-m-d',
+            lang:'ru',
+            timepicker:false,
+            closeOnDateSelect:true,
+
+        });
+    }
+
+
+
+    console.info(date);
     /*Размеры окна*/
-    myWidth = document.documentElement.clientWidth;
+
     console.info(myWidth);
 
     $( ".cauta-select" ).click(function() {
@@ -53,20 +85,8 @@ $(function () {
     $( "#date_start" ).datepicker({ dateFormat: 'yy-mm-dd' });
     $( "#date_stop" ).datepicker({ dateFormat: 'yy-mm-dd' });*/
 
-    $('#date_start').datetimepicker({
-        format:'Y-m-d',
-        lang:'ru',
-        timepicker:false,
-        closeOnDateSelect:true,
 
-    });
-    $('#date_stop').datetimepicker({
-        format:'Y-m-d',
-        lang:'ru',
-        timepicker:false,
-        closeOnDateSelect:true,
 
-    });
 })
 
 

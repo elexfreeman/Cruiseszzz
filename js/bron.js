@@ -528,7 +528,7 @@ Bron2.PlaceClick = function(place,t)
         p+='<input id="u_surname_'+place+'" type="text" placeholder="Фамилия" name="u_surname_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_name_'+place+'" type="text" placeholder="Имя" name="u_name_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_patronymic_'+place+'" type="text" placeholder="Отчество" name="u_patronymic_'+place+'" class="w-input bronmodalinput">';
-        p+=' <input id="u_birthday_'+place+'" type="text" placeholder="Дата рождения" name="u_birthday_'+place+'" required="required"  class="w-input hasDatepicker2 bronmodalinput u_birthday_'+place+'">';
+        p+=' <input  id="u_birthday_'+place+'" type="text" placeholder="Дата рождения" name="u_birthday_'+place+'" required="required"  class="w-input hasDatepickerBron bronmodalinput u_birthday_'+place+'">';
         p+=' <input  type="hidden" placeholder="Дата рождения" name="placeid_'+place+'" value="'+place+'">';
 
         p+='  </div>';
@@ -541,21 +541,39 @@ Bron2.PlaceClick = function(place,t)
         p+='<input id="u_surname_'+place+'" type="text" placeholder="Фамилия" name="u_surname_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_name_'+place+'" type="text" placeholder="Имя" name="u_name_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_patronymic_'+place+'" type="text" placeholder="Отчество" name="u_patronymic_'+place+'" class="w-input bronmodalinput">';
-        p+=' <input id="u_birthday_'+place+'" type="text" placeholder="Дата рождения" name="u_birthday_'+place+'" required="required"  class="w-input hasDatepicker2 bronmodalinput u_birthday_'+place+'">';
+        p+=' <input  id="u_birthday_'+place+'" type="text" placeholder="Дата рождения" name="u_birthday_'+place+'" required="required"  class="w-input hasDatepickerBron bronmodalinput u_birthday_'+place+'">';
         p+=' <input  type="hidden" placeholder="Дата рождения" name="placeid_'+place+'" value="'+place+'">';
 
         p+='  </div>';
         $('.passaj_content-pay').append(p);
-        $('.hasDatepicker2').datetimepicker({
+
+     /*   $('.hasDatepicker2').datetimepicker({
             format:'d.m.Y',
             lang:'ru',
             timepicker:false,
             closeOnDateSelect:true,
 
-        });
+        });*/
 /*
         $( ".u_birthday_"+place ).datepicker({ dateFormat: 'dd.mm.yy' ,changeMonth: true,
             changeYear: true,yearRange:'-90:+0' });*/
+        /*Проставляется в 3-х местах*/
+        myWidth = parseInt(document.documentElement.clientWidth);
+        if(myWidth<750)
+        {
+            //data-field="date"
+            $(".hasDatepickerBron").attr("type","date");
+        }
+        else {
+            $(".hasDatepickerBron").attr("type", "text");
+
+            $('.hasDatepickerBron').datetimepicker({
+                format: 'Y-m-d',
+                lang: 'ru',
+                timepicker: false,
+                closeOnDateSelect: true,
+            });
+        }
 
 
 
@@ -596,13 +614,32 @@ $(function() {
    // setTimeout(function() {$('.CautaClick').popover({html: true})},3000);
     ///$('.CautaClick').hover()
 
+    /*
+
     $('.hasDatepicker2').datetimepicker({
         format:'d.m.Y',
         lang:'ru',
         timepicker:false,
         closeOnDateSelect:true,
 
-    });
+    });*/
+
+    myWidth = parseInt(document.documentElement.clientWidth);
+    if(myWidth<750)
+    {
+        //data-field="date"
+        $(".hasDatepickerBron").attr("type","date");
+    }
+    else {
+        $(".hasDatepickerBron").attr("type", "text");
+
+        $('.hasDatepickerBron').datetimepicker({
+            format: 'Y-m-d',
+            lang: 'ru',
+            timepicker: false,
+            closeOnDateSelect: true,
+        });
+    }
 
     $( ".CautaClick" ).hover(
         function() {
@@ -944,7 +981,7 @@ Bron2.BronClick = function()
                     /*agreement*/
                     if(data.agreement==1)
                     {
-                        $('.PayButtons.agreement').addClass('alert');
+                        $('.aggr_text').css("color","red");
 
                     }
                     $('.bronbuttonsubmit.bron').prop('disabled',false);
@@ -993,6 +1030,10 @@ $(function () {
         }, 1500);
 
     })*/
+
+    $('#ModalAgrement').on('hidden.bs.modal', function (e) {
+        $(".bodyclass").addClass("modal-open");
+    })
 })
 
 

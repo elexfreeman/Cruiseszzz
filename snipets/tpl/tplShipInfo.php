@@ -140,7 +140,11 @@
     </div>
     <div class="poph1 ship1">Круизы со свободными местами</div>
     <?php
-    $sql_cruis="SELECT * FROM ".$table_prefix."site_content kr WHERE (kr.parent = ".$ship_id.")and(kr.template=".$this->CruisTemplate.")" ;
+    $sql_cruis="SELECT * FROM
+".$table_prefix."site_content kr
+WHERE (kr.parent = ".$ship_id.")and(kr.template=".$this->CruisTemplate.")
+and(kr.deleted=0)
+" ;
 
 
     $qq=$modx->query($sql_cruis);

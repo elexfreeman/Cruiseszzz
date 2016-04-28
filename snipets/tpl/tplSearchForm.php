@@ -42,14 +42,17 @@
             </div>
             <div class="w-clearfix filterblock date">
                 <label for="field" class="filterlabel">Дата отправления:</label>
+
+                <label class="date-label">С:</label>
                 <input
                     type="text"
                     id="date_start"
                     placeholder="с:"
                     name="date_start"
                     required="required" data-name="date_start"
-                    class="w-input filterinput small date_picker">
+                    class="w-input filterinput small hasDatepicker3 date_picker">
 
+                <label class="date-label">По:</label>
                 <input
                     id="date_stop"
                     type="text"
@@ -57,7 +60,7 @@
                     name="date_stop"
                     required="required"
                     data-name="date_stop"
-                    class="w-input filterinput small right date_picker">
+                    class="w-input filterinput small right hasDatepicker3 date_picker">
 
                 <div class="w-checkbox w-clearfix chkvhd">
                     <input id="weekend" type="checkbox" name="weekend" data-name="weekend" class="w-checkbox-input chkvhd1">
