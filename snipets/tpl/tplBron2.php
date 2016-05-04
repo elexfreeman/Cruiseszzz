@@ -1,11 +1,13 @@
 <?php
 //Чтобы забронировать или выкупить каюту - нажмите на нее
 ?>
-<pre style="display: none;">
-    <?php print_r($data);?>
-</pre>
+<script>
+    $(function() {
+        Scroll("cruis-container");
+    });
+</script>
 
-<div class="cruiscontainer">
+<div class="cruiscontainer" id="cruis-container">
     <div class="cruissliderbox"
         <?php
         if($data['cruis']->TV['kr_slider_img_1']=='') echo 'style="display:none"';

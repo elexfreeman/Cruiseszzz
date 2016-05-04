@@ -4,6 +4,9 @@
 
 
 $(function() {
+
+
+
     $( ".cauta-select2" ).click(function() {
         $( ".cauta-select2").removeClass('chk');
         $(this).addClass('chk');
@@ -672,6 +675,8 @@ $(function() {
         var ee=obsh[i];
         if(parseInt($(ee).html())>0)
         {
+            myWidth = parseInt(document.documentElement.clientWidth);
+
 
             var jqxhr = $.ajax( {
                 type: 'GET',
@@ -680,7 +685,8 @@ $(function() {
                     //log1:1,
                     action: "GetCautaInfo",
                     cruis_id:$('.cruis_id').val(),
-                    cauta_number:$(ee).html()
+                    cauta_number:$(ee).html(),
+                    myWidth:myWidth
 
                 },
                 dataType : "json"})
@@ -719,8 +725,12 @@ $(function() {
 
     /*Щелкнули по каюте на схеме*/
     $( ".CautaClick" ).click(function() {
-
-        Bron2.CautaClick($('.cruis_id').val(),$(this).html());
+        myWidth = parseInt(document.documentElement.clientWidth);
+        if(myWidth>750) {Bron2.CautaClick($('.cruis_id').val(),$(this).html());}
+        else
+        {
+           // $(this).popover('toggle');
+        }
     });
 
  /*   $( ".btn.popover11" ).click(function() {

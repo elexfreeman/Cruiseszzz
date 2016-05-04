@@ -185,3 +185,9 @@
     background-color: #ffffff;
     cursor: pointer;
 }
+
+.bron-popover-link
+{
+    color: #008f01;
+    text-decoration: none;
+}
