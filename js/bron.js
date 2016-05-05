@@ -454,8 +454,6 @@ console.info(i);
                if(parseInt(place.status)==0) $('.bronmodalplacebox').append('<div class="bronmodalplaceitem place-selector" place="'+i+'">№'+place.name+'</div>');
                if(parseInt(place.status)==1) $('.bronmodalplacebox').append('<div class="bronmodalplaceitem full">(занято)</div>');
 
-
-
        });
 
        $('.noPlace').hide();
@@ -482,7 +480,15 @@ Bron2.BronTabClick = function()
     $('.bronbuttons').removeClass('by');
     $('.bronbuttons').addClass('bron');
     $('.bronbuttonsubmit').removeClass('pay');
-    $(".modal").animate({scrollTop: (500)}, 1000);
+    var myWidth = parseInt(document.documentElement.clientWidth);
+    if(myWidth<750)
+    {
+        $("body").animate({scrollTop: (500)}, 1000);
+    }
+    else
+    {
+        $("#BronModalV2").animate({scrollTop: (500)}, 1000);
+    }
 
 
 }
@@ -493,7 +499,15 @@ Bron2.PayTabClick = function()
     $('.bronbuttons').removeClass('bron');
     $('.bronbuttons').addClass('by');
     $('.bronbuttonsubmit').addClass('pay');
-    $(".modal").animate({scrollTop: (500)}, 1000);
+    var myWidth = parseInt(document.documentElement.clientWidth);
+    if(myWidth<750)
+    {
+        $("body").animate({scrollTop: (500)}, 1000);
+    }
+    else
+    {
+        $("#BronModalV2").animate({scrollTop: (500)}, 1000);
+    }
 
 }
 
@@ -531,8 +545,10 @@ Bron2.PlaceClick = function(place,t)
         p+='<input id="u_surname_'+place+'" type="text" placeholder="Фамилия" name="u_surname_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_name_'+place+'" type="text" placeholder="Имя" name="u_name_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_patronymic_'+place+'" type="text" placeholder="Отчество" name="u_patronymic_'+place+'" class="w-input bronmodalinput">';
+        p+='<label class="show-on-mobile bron-mobyle-label">Дата рождения</label>';
         p+=' <input  id="u_birthday_'+place+'" type="text" placeholder="Дата рождения" name="u_birthday_'+place+'" required="required"  class="w-input hasDatepickerBron bronmodalinput u_birthday_'+place+'">';
-        p+=' <input  type="hidden" placeholder="Дата рождения" name="placeid_'+place+'" value="'+place+'">';
+
+        p+=' <input  type="hidden"  name="placeid_'+place+'" value="'+place+'">';
 
         p+='  </div>';
 
@@ -544,8 +560,9 @@ Bron2.PlaceClick = function(place,t)
         p+='<input id="u_surname_'+place+'" type="text" placeholder="Фамилия" name="u_surname_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_name_'+place+'" type="text" placeholder="Имя" name="u_name_'+place+'" required="required"  class="w-input bronmodalinput">';
         p+=' <input id="u_patronymic_'+place+'" type="text" placeholder="Отчество" name="u_patronymic_'+place+'" class="w-input bronmodalinput">';
+        p+='<label class="show-on-mobile bron-mobyle-label">Дата рождения</label>';
         p+=' <input  id="u_birthday_'+place+'" type="text" placeholder="Дата рождения" name="u_birthday_'+place+'" required="required"  class="w-input hasDatepickerBron bronmodalinput u_birthday_'+place+'">';
-        p+=' <input  type="hidden" placeholder="Дата рождения" name="placeid_'+place+'" value="'+place+'">';
+        p+=' <input  type="hidden" name="placeid_'+place+'" value="'+place+'">';
 
         p+='  </div>';
         $('.passaj_content-pay').append(p);

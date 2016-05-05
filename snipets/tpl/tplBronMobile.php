@@ -8,7 +8,31 @@
  */
 
 ?>
+<script>
+    $(function() {
 
+        $.ajax({
+            type: 'GET',
+            url: '/ajax-bron.html',
+            data: {
+                //log1:1,
+                action: "GetCautaInfo",
+                cruis_id:<?php echo $this->data['cruis_id']; ?>,
+                cauta_number:<?php echo $this->data['cauta_number']; ?>
+
+            },
+            dataType : "json",
+            success: function(data) {
+                // $('#tplBronForm2').html(data);
+                Bron2.InitBronModal(data);
+
+            },
+            error:  function(xhr, str){
+                //$('.alert').html('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+    });
+</script>
 
 <!-- Modal -->
 <div id="BronModalV2">
@@ -16,10 +40,10 @@
         <div class="modal-content">
             <div class="bron-modal">
                 <div class="w-clearfix bronmodaltop">
-                    <div class="bronmodalclosebutton"  data-dismiss="modal" aria-label="Close"></div>
+
                     <div class="bronmodaltopinfo">
                         <div class="bronmodallist">
-                            <div class="bronmodallistcaption">Каюта №<span id="bron-modal-cauta-number">0</span></div>
+                            <div class="bronmodallistcaption">Каюта №<span id="bron-modal-cauta-number"><?php echo $this->data['cauta_number']; ?></span></div>
                         </div>
                         <div class="bronmodalprice"><span id="bron-modal-cauta-summa">0</span> р.</div>
                     </div>
@@ -45,9 +69,9 @@
                         <input type="hidden" name="from" value="pay">
                         <input type="hidden" name="action" id="action-pay" value="bronPay">
                         <input type="hidden" name="cauta_number" class="cauta_number" value="">
-                        <input type="hidden" name="cruiz_id" class="cruis_id" value="<?php echo $data['cruis']->id; ?>">
-                        <input type="hidden" id="ship_id" name="ship_id" value="<?php echo $data['cruis']->parent; ?>">
-                        <input type="hidden" id="ship_name" name="ship_name" value="<?php echo $data['ship']->title; ?>">
+                        <input type="hidden" name="cruiz_id" class="cruis_id" value="<?php echo $this->data['cruis']->id; ?>">
+                        <input type="hidden" id="ship_id" name="ship_id" value="<?php echo $this->data['cruis']->parent; ?>">
+                        <input type="hidden" id="ship_name" name="ship_name" value="<?php echo $this->data['ship']->title; ?>">
 
                         <h3 class="bronmodalh3">Покупатель</h3>
                         <div class="bronformfieldsrow passjir" id="p_0">
@@ -56,6 +80,8 @@
                             <input id="u_surname_0" type="text" placeholder="Фамилия" name="u_surname_0" required="required" class="w-input bronmodalinput">
                             <input id="u_name_0" type="text"  placeholder="Имя" name="u_name_0" required="required" class="w-input bronmodalinput">
                             <input id="u_patronymic_0" type="text" placeholder="Отчество" name="u_patronymic_0" class="w-input bronmodalinput ">
+
+                            <label class="show-on-mobile bron-mobyle-label">Дата рождения</label>
                             <input  id="u_birthday_0"  placeholder="Дата рождения"
                                    name="u_birthday_0" required="required" class="w-input bronmodalinput hasDatepickerBron u_birthday_0">
 
@@ -77,7 +103,7 @@
 
                         <div class="bron-phone-content">
                             <h3 class="bronmodalh3">Введите кодовую фразу</h3>
-                            <?php  echo '<img src="'.$data['capcha'].'">'; ?>
+                            <?php  echo '<img src="'.$this->data['capcha'].'">'; ?>
                             <input id="u_ca" type="text"  name="u_ca" required="required"  class="w-input bronmodalinput">
                         </div>
 
@@ -103,9 +129,9 @@
                         <input type="hidden" name="action" value="bronPay">
                         <input type="hidden" name="from" value="bron">
                         <input type="hidden" name="cauta_number" class="cauta_number" value="">
-                        <input type="hidden" name="cruiz_id" class="cruis_id" value="<?php echo $data['cruis']->id; ?>">
-                        <input type="hidden" name="ship_id" value="<?php echo $data['cruis']->parent; ?>">
-                        <input type="hidden" name="ship_name" value="<?php echo $data['ship']->title; ?>">
+                        <input type="hidden" name="cruiz_id" class="cruis_id" value="<?php echo $this->data['cruis']->id; ?>">
+                        <input type="hidden" name="ship_id" value="<?php echo $this->data['cruis']->parent; ?>">
+                        <input type="hidden" name="ship_name" value="<?php echo $this->data['ship']->title; ?>">
 
                         <h3 class="bronmodalh3">Пассажиры</h3>
                         <div class="passaj_content-bron"></div>
@@ -119,7 +145,7 @@
 
                         <div class="bron-phone-content">
                             <h3 class="bronmodalh3">Введите кодовую фразу</h3>
-                            <?php  echo '<img src="'.$data['capcha'].'">'; ?>
+                            <?php  echo '<img src="'.$this->data['capcha'].'">'; ?>
                             <input id="u_ca" type="text"  name="u_ca" required="required"  class="w-input bronmodalinput">
                         </div>
 
@@ -137,6 +163,46 @@
                     </form>
 
                 </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="robokassa" style="display: none"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalBron" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title " id="modal-bron-title">Успешная бронь</h4>
+            </div>
+            <div class="modal-body " id="modal-born-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="cruisformcommitbutton" style="padding-top: 0;" data-dismiss="modal">Закрыть</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalTimer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title " id="modal-bron-title">Подождите</h4>
+            </div>
+            <div class="modal-body " id="modal-born-body">
+                <img src="/images/loader.GIF" style="display: block;margin: 0 auto;">
             </div>
 
         </div>

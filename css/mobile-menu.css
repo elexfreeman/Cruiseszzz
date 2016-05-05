@@ -31,23 +31,7 @@ body {
 .slideout-open .slideout-menu {
     display: block;
 }
-.show-on-mobile
-{
-    display:none;
-}
-@media (max-width: 479px)
-{
-    .hide-on-mobile
-    {
-        display:none;
-    }
 
-    .show-on-mobile
-    {
-        display:block;
-    }
-
-}
 
 @media (max-width: 767px) {
     .moblie-menu {

@@ -1,8 +1,13 @@
 
 @media (max-width: 991px) {
+    .bronmodalplacebox
+    {
+        width: auto;
+    }
 
     .bron-modal {
         width: 100%;
+        overflow: visible;
     }
     .bronformfieldsrow.passjir {
         padding-right: 20px;
@@ -109,6 +114,7 @@
     }
 
     .bronbuttons {
+        padding-left: 0px;
         background-image: none;
         overflow: auto;
         height: auto;
@@ -190,4 +196,28 @@
 {
     color: #008f01;
     text-decoration: none;
+}
+
+
+.show-on-mobile
+{
+    display:none;
+}
+@media (max-width: 479px)
+{
+    .hide-on-mobile
+    {
+        display:none;
+    }
+
+    .show-on-mobile
+    {
+        display:block;
+    }
+
+}
+
+.bron-mobyle-label
+{
+    padding-top: 15px;
 }
