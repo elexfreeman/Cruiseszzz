@@ -68,9 +68,9 @@
                         <input type="hidden" name="need_call" id="need_call" value="1">
                         <input type="hidden" name="from" value="pay">
                         <input type="hidden" name="action" id="action-pay" value="bronPay">
-                        <input type="hidden" name="cauta_number" class="cauta_number" value="">
+                        <input type="hidden" name="cauta_number" class="cauta_number" value="<?php echo $this->data['cauta_number']; ?>">
                         <input type="hidden" name="cruiz_id" class="cruis_id" value="<?php echo $this->data['cruis']->id; ?>">
-                        <input type="hidden" id="ship_id" name="ship_id" value="<?php echo $this->data['cruis']->parent; ?>">
+                        <input type="hidden" id="ship_id" name="ship_id" value="<?php echo $this->data['ship']->id; ?>">
                         <input type="hidden" id="ship_name" name="ship_name" value="<?php echo $this->data['ship']->title; ?>">
 
                         <h3 class="bronmodalh3">Покупатель</h3>
@@ -128,9 +128,9 @@
                         <input type="hidden" name="need_call" class="need_call" value="1">
                         <input type="hidden" name="action" value="bronPay">
                         <input type="hidden" name="from" value="bron">
-                        <input type="hidden" name="cauta_number" class="cauta_number" value="">
+                        <input type="hidden" name="cauta_number" class="cauta_number" value="<?php echo $this->data['cauta_number']; ?>">
                         <input type="hidden" name="cruiz_id" class="cruis_id" value="<?php echo $this->data['cruis']->id; ?>">
-                        <input type="hidden" name="ship_id" value="<?php echo $this->data['cruis']->parent; ?>">
+                        <input type="hidden" name="ship_id" value="<?php echo $this->data['ship']->id; ?>">
                         <input type="hidden" name="ship_name" value="<?php echo $this->data['ship']->title; ?>">
 
                         <h3 class="bronmodalh3">Пассажиры</h3>

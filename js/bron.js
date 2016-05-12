@@ -671,25 +671,36 @@ $(function() {
 
 
     /*проставляем папраметры кают на схеме*/
-    var obsh = document.getElementsByClassName('CautaClick');
+    console.info('search k');
+   /* var obsh = document.getElementsByClassName('CautaClick');
     var elems = $('.CautaClick').nextAll();
     var lastID = elems.length - 1;
-    /*Определяем точное кол-во кают*/
+    console.info(elems);
+
     var count_c=0;
     for (var i = 0; i < lastID; i++) {
+
         $(obsh[i]).attr('id', "cauta_number_" + $(obsh[i]).html());
         var ee = obsh[i];
         if (parseInt($(ee).html()) > 0) count_c++;
-    }
+    }*/
+    var count_c=0;
+    $(".CautaClick").each(function(indx, element){
+        if (parseInt($(element).html()) > 0) count_c++;
+    });
+
+
 
     $( "#progressbar" ).progressbar({
         max: count_c
     });
     console.info( $( "#progressbar" ).attr('aria-valuemax'));
 
-    for (var i = 0; i < lastID; i++) {
-        $(obsh[i]).attr('id',"cauta_number_"+$(obsh[i]).html());
-        var ee=obsh[i];
+    //for (var i = 0; i < lastID; i++)
+    $(".CautaClick").each(function(indx, element)
+    {
+        $(element).attr('id',"cauta_number_"+$(element).html());
+        var ee=element;
         if(parseInt($(ee).html())>0)
         {
             myWidth = parseInt(document.documentElement.clientWidth);
@@ -735,7 +746,7 @@ $(function() {
                 });
         }
 
-    }
+    });
 
 
 
