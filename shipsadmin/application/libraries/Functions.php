@@ -122,14 +122,14 @@ class Functions {
 
         if ($c_tv_id == 0) {
             $sql_modx_vars = "INSERT INTO " . $this->table_prefix . "site_tmplvar_contentvalues
-(tmplvarid,contentid,value) VALUES ('" . $tv_id . "','".$page_id."','".EscapeString($tv_value)."');";
-            //   echo $sql_modx_vars . "<br>";
+(tmplvarid,contentid,value) VALUES ('" . $tv_id . "','".$page_id."','".$this->CI->security->xss_clean($tv_value)."');";
+               echo $sql_modx_vars . "<br>";
             $this->dbMySQL->query($sql_modx_vars);
 
         } else {
             $sql_modx_vars = "update " . $this->table_prefix . "site_tmplvar_contentvalues
-            set value='".EscapeString($tv_value)."' where  (tmplvarid='" . $tv_id . "')and(contentid='".$page_id."')";
-            //echo $sql_modx_vars;
+            set value='".$this->CI->security->xss_clean($tv_value)."' where  (tmplvarid='" . $tv_id . "')and(contentid='".$page_id."')";
+            echo $sql_modx_vars;
             $this->CI->dbMySQL->query($sql_modx_vars);
         }
     }

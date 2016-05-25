@@ -117,10 +117,10 @@ class Ships extends CI_Controller {
         {
             if($cautatypeid==0)
             {
+                /*insert*/
                 if(isset($_POST['action']))
                 {
-
-
+                    $this->ships_model->IncertCautaType($ship_id,$_POST);
                 }
                 else
                 {
@@ -141,10 +141,10 @@ class Ships extends CI_Controller {
             }
             else
             {
+                /*update*/
                 if(isset($_POST['action']))
                 {
-                    print_r($_POST);
-
+                    $this->ships_model->IncertCautaType($ship_id,$_POST);
                 }
                 else {
                     /*Обновляем*/

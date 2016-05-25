@@ -138,5 +138,31 @@ class Ships_model extends CI_Model
     }
 
 
+    function IncertCautaType($ship_id,$arg)
+    {
+        $ship=$this->GetShipInfo($ship_id);
+        $page = new stdClass();
+        $page->pagetitle=$arg['pagetitle'].'_'.$ship_id;
+        $page->parent=$ship->cautaTypesRoot[0]->id;
+        $page->template=$this->CautaTypeTpl;
+        $page->url='';
+        $page->TV['k_description']=$arg['k_description'];
+        for($i=1;$i<=4;$i++) $page->TV['k_img'.$i]=$arg['k_img'.$i];
+
+        $naborUslog='';
+        foreach ($arg as $key=>$value) {
+            $key=explode("_",$key);
+            if($key[0]=='naborUslug')  $naborUslog.=$value."||";
+        }
+
+        $page->TV['k_params']=$naborUslog;
+
+        print_r($page);
+
+        $page->alias = '';
+        $this->functions->IncertPage($page);
+
+    }
+
 
 }
