@@ -727,7 +727,19 @@ $(function() {
                         $('#cauta_number_'+data.popover_number).attr('data-content',data.popover_content);
                         $('#cauta_number_'+data.popover_number).css('fill','black');
                         $('#cauta_number_'+data.popover_number).addClass('popover1');
+
                         $('#cauta_number_'+data.popover_number).popover({html: true});
+                    /*Выставляем цвета для свободных/занятых мест*/
+                    if(parseInt(data.free_place)>0)
+                    {
+                        $('#cauta_number_'+data.popover_number).css('fill', 'rgb(25, 107, 25)');
+                        $('#cauta_number_'+data.popover_number).css('font-weight', 'bold');
+                    }
+                    else
+                    {
+                        $('#cauta_number_'+data.popover_number).css('fill', '#ccc');
+                    }
+
                   var progress =  $( "#progressbar" ).progressbar( "value" );
                   $( "#progressbar" ).progressbar( "value", (progress+1) );
                     if($( "#progressbar" ).attr('aria-valuemax')==(progress+1))
@@ -1079,6 +1091,8 @@ $(function() {
     $( "#progressbar" ).progressbar({
         value: 0
     });
+
+    
 
     $(".cautaDescription").popover({html: true});
 

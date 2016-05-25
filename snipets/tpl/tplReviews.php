@@ -1,7 +1,7 @@
 <div class="reviews page">
-    <div class="contaktscallbox review">
-        <div class="callformtitle review4">
-            <span style="font-size: 28px;"><strong id="review_thx">Оставить отзыв</strong></span>
+    <div class="contaktscallbox review " >
+        <div class="callformtitle review4"  >
+            <span style="font-size: 28px;" id='gogo'><strong id="review_thx" >Оставить отзыв</strong></span>
         </div>
         <div class="w-form contactscallform review3">
             <form id="SendReview" name="email-form-4" data-name="Email Form 4" class="w-clearfix">

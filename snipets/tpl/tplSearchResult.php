@@ -35,6 +35,7 @@ if((isset($_GET['date_stop']))and($_GET['date_stop']!=''))
 
 
 
+$_SESSION['GET']=$_GET;
 
 
 

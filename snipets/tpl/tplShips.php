@@ -1,4 +1,4 @@
-<div class="poph1">Теплоходы</div>
+<div class="poph1" id="gogo">Теплоходы</div>
 <div class="shipsblock">
     <?php
     /*todo: скачать все картинки теплоходов*/

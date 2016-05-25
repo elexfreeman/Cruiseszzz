@@ -27,6 +27,12 @@ class Ship
     public $ShipsTemplate = 2;
     public  $popDirection;
 
+    /*шаблон списка типов кают*/
+    public $CautaTypesTpl = 31;
+    /*Шаблон типов кают*/
+    public $CautaTypeTpl = 32;
+
+
 
     public $CruisTemplate = 3;
 
@@ -129,9 +135,34 @@ class Ship
 
 
     /*Информация в ввиде объекта о корабля по его внутреннему номеру*/
+    /*БК*/
+    function GetShipInfo1($ship_id)
+    {
+        $ship = GetPageInfo($ship_id);
+        $cautaTypesRoot = GetChildList($ship_id,$this->CautaTypesTpl);
+        if(count($cautaTypesRoot)>0)
+        {
+            $ship->CautaTypes = GetChildList($cautaTypesRoot[0]->id);
+        }
+        /*Ищем описания коют*/
+        return $ship;
+    }
+
+
+    /*Информация в ввиде объекта о корабля по его внутреннему номеру*/
+
     function GetShipInfo($ship_id)
     {
-        return GetPageInfo($ship_id);
+        $ship = GetPageInfo($ship_id);
+        $cautaTypesRoot = GetChildListNoSort($ship_id,$this->CautaTypesTpl,false);
+        $ship->cautaTypesRoot = $cautaTypesRoot;
+        $ship->CautaTypes=array();
+        if(count($cautaTypesRoot)>0)
+        {
+            $ship->CautaTypes = GetChildListNoSort($cautaTypesRoot[0]->id,$this->CautaTypeTpl,false);
+        }
+        /*Ищем описания коют*/
+        return $ship;
     }
 
 
@@ -141,7 +172,6 @@ class Ship
     {
         global $modx;
         global $table_prefix;
-
 
         $sql="select
                     ships.id ship_id,
@@ -752,6 +782,7 @@ order by cv.value
     {
         global $modx;
         global $table_prefix;
+        unset($_SESSION['GET']);
         include "tpl/tplSearchResult.php";
     }
 
@@ -1278,6 +1309,21 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
     }
 
 
+    /*ПОказывает рез поиска*/
+    public function ShowSearchResultCache()
+    {
+        global $modx;
+        global $table_prefix;
+        if(isset($_SESSION["GET"]))
+        {
+            $_GET=$_SESSION['GET'];
+
+            include "tpl/tplSearchResult.php";
+        }
+
+    }
+
+
     /*Главная функция для снипита*/
     function Run($scriptProperties)
     {
@@ -1314,6 +1360,7 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
 
             if($scriptProperties['action']=='tplAdminLogin') $this-> tplAdminLogin();
             if($scriptProperties['action']=='isAdminLoginPage') $this-> isAdminLoginPage();
+            if($scriptProperties['action']=='ShowSearchResultCache') $this-> ShowSearchResultCache();
         }
     }
 

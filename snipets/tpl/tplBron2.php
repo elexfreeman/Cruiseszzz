@@ -7,7 +7,7 @@
     });
 </script>
 
-<div class="cruiscontainer" id="cruis-container">
+<div class="cruiscontainer" >
     <div class="cruissliderbox"
         <?php
         if($data['cruis']->TV['kr_slider_img_1']=='') echo 'style="display:none"';
@@ -113,8 +113,9 @@
         </div>
     </div>
 
-    <div class="bronDescription">
+    <div class="bronDescription" >
         <div class="bronShipTitle"><?php  echo $data['ship']->title; ?></div>
+        <div id="cruis-container"></div>
 
         <div class="cruis-description">
             <p><b>Направление: </b><?php echo $data['cruis']->TV['kr_route'] ?></p>
@@ -147,7 +148,8 @@
                 </div>
             <?php
         }
-        elseif((int)$data['ship']->id==19441) {
+        elseif((int)$data['ship']->id==19441)
+        {
             ?>
             <div class="ship-loader">
                 <h3 class="cruisformh3">Загрузка информации о наличии мест в каютах</h3>
@@ -157,6 +159,34 @@
             <div class="ship-paluba">
                 <h3 class="cruisformh3">Чтобы забронировать или выкупить каюту - нажмите на нее</h3>
                 <?php  include 'ships/tplAlexTolst.php'; ?>
+            </div>
+            <?php
+        }
+        elseif((int)$data['ship']->id==19477)
+        {
+            ?>
+            <div class="ship-loader">
+                <h3 class="cruisformh3">Загрузка информации о наличии мест в каютах</h3>
+                <div id="progressbar"></div>
+            </div>
+
+            <div class="ship-paluba">
+                <h3 class="cruisformh3">Чтобы забронировать или выкупить каюту - нажмите на нее</h3>
+                <?php  include 'ships/tplSemenB.php'; ?>
+            </div>
+            <?php
+        }
+        elseif((int)$data['ship']->id==19430)
+        {
+            ?>
+            <div class="ship-loader">
+                <h3 class="cruisformh3">Загрузка информации о наличии мест в каютах</h3>
+                <div id="progressbar"></div>
+            </div>
+
+            <div class="ship-paluba">
+                <h3 class="cruisformh3">Чтобы забронировать или выкупить каюту - нажмите на нее</h3>
+                <?php  include 'ships/tplGerzen.php'; ?>
             </div>
             <?php
         }

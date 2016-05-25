@@ -440,15 +440,16 @@ function GetChildList($obj_id,$template)
 
 
 //Инфа по все потомкам не отсортированный по id
-function GetChildListNoSort($obj_id,$template)
+function GetChildListNoSort($obj_id,$template,$deleted=true)
 {
     global $modx;
     global $table_prefix;
 
     $objects=Array();
     $sql = "select * from " . $table_prefix . "site_content
-    where (parent=" . $obj_id.")and(template=".$template.")
-    order by menuindex";
+    where (parent=" . $obj_id.")and(template=".$template.")";
+    if(!$deleted) $sql.=" and(deleted='0')";
+    $sql.=" order by menuindex";
 
     //echo $sql;
     foreach ($modx->query($sql) as $row)

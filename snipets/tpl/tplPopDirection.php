@@ -2,7 +2,7 @@
 $this->GetPopDirectionList();
 
 ?>
-<div class="w-clearfix popdirection">
+<div class="w-clearfix popdirection" id='gogo'>
     <?php
     foreach ($this->popDirection as $cruis)
     {
