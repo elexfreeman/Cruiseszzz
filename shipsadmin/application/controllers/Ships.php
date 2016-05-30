@@ -24,13 +24,14 @@ class Ships extends CI_Controller {
         $this->load->model('ships_model');
     }
 
+
 	public function index()
 	{
         /*переменные для языков описанны тут: \application\language\*/
 
         if( $this->auth_model->IsLogin())
         {
-            header('Location: '.base_url('ship'));
+            header('Location: '.base_url('ships/ship'));
         }
         else
         {
@@ -49,25 +50,36 @@ class Ships extends CI_Controller {
         {
             if($ship_id==0)
             {
-                $this->data['auth']=$this->session->userdata('auth');
-                $this->data['ships']=$this->ships_model->GetShipsList();
-                $this->load->view('head',$this->data);
-                /*шаблон страницы*/
-                $this->load->view('navbar',$this->data);
-                $this->load->view('ships',$this->data);
+                    $this->data['auth']=$this->session->userdata('auth');
+                    $this->data['ships']=$this->ships_model->GetShipsList();
+                    $this->load->view('head',$this->data);
+                    /*шаблон страницы*/
+                    $this->load->view('navbar',$this->data);
+                    $this->load->view('ships',$this->data);
 
-                $this->load->view('footer',$this->data);
+                    $this->load->view('footer',$this->data);
+
             }
             else
             {
-                $this->data['auth']=$this->session->userdata('auth');
-                $this->data['ship']=$this->ships_model->GetShipInfo($ship_id);
-                $this->load->view('head',$this->data);
-                /*шаблон страницы*/
-                $this->load->view('navbar',$this->data);
-                $this->load->view('ship',$this->data);
+                if(isset($_POST['action']))
+                {
+                    $this->ships_model->ShipDataUpdate($ship_id);
+                    header('Location: '.base_url('ships/ship'));
+                    exit;
+                }
+                else
+                {
+                    $this->data['auth']=$this->session->userdata('auth');
+                    $this->data['ship']=$this->ships_model->GetShipInfo($ship_id);
+                    $this->load->view('head',$this->data);
+                    /*шаблон страницы*/
+                    $this->load->view('navbar',$this->data);
+                    $this->load->view('ship',$this->data);
 
-                $this->load->view('footer',$this->data);
+                    $this->load->view('footer',$this->data);
+                }
+
             }
         }
         else
@@ -113,6 +125,7 @@ class Ships extends CI_Controller {
         $this->data['logout_link']=site_url('auth/logout');
         $this->data['navbar_link']='ships';
 
+
         if( $this->auth_model->IsLogin())
         {
             if($cautatypeid==0)
@@ -120,7 +133,10 @@ class Ships extends CI_Controller {
                 /*insert*/
                 if(isset($_POST['action']))
                 {
-                    $this->ships_model->IncertCautaType($ship_id,$_POST);
+                    $this->ships_model->IncertCautaType($ship_id,$cautatypeid,$_POST,$_FILES);
+                    header('Location: '.base_url('ships/ship/'.$ship_id));
+                    exit;
+
                 }
                 else
                 {
@@ -129,7 +145,7 @@ class Ships extends CI_Controller {
                     $this->data['auth']=$this->session->userdata('auth');
                     $this->data['ship']=$this->ships_model->GetShipInfo($ship_id);
                     $this->data['cautatypeid']=$cautatypeid;
-
+                    $this->data['naborUslug'] = $this->ships_model->naborUslug;
                     $this->load->view('head',$this->data);
                     /*шаблон страницы*/
                     $this->load->view('navbar',$this->data);
@@ -144,7 +160,9 @@ class Ships extends CI_Controller {
                 /*update*/
                 if(isset($_POST['action']))
                 {
-                    $this->ships_model->IncertCautaType($ship_id,$_POST);
+                    $this->ships_model->IncertCautaType($ship_id,$cautatypeid,$_POST);
+                    header('Location: '.base_url('ships/ship/'.$ship_id));
+                    exit;
                 }
                 else {
                     /*Обновляем*/

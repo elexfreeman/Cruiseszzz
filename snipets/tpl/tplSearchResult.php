@@ -36,7 +36,7 @@ if((isset($_GET['date_stop']))and($_GET['date_stop']!=''))
 
 
 $_SESSION['GET']=$_GET;
-
+$_SESSION['search_time'] = strtotime(date('H:i:s d.m.Y'));
 
 
 

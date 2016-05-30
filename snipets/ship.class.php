@@ -774,7 +774,19 @@ order by cv.value
     function tplSearchForm()
     {
 
+       // $this->unset_search_res();
         include "tpl/tplSearchForm.php";
+    }
+
+
+    /*херит данные о поиске*/
+    function unset_search_res($echo=false)
+    {
+        $now =  strtotime(date('H:i:s d.m.Y'));
+        if (($now-$_SESSION['search_time'])>120);
+        unset($_SESSION['GET']);
+        if($echo) echo $now-$_SESSION['search_time'];
+
     }
 
 
@@ -782,6 +794,7 @@ order by cv.value
     {
         global $modx;
         global $table_prefix;
+        $this->unset_search_res();
         unset($_SESSION['GET']);
         include "tpl/tplSearchResult.php";
     }
@@ -1624,6 +1637,11 @@ where TV.name ="kr_pop"))and(CV.value like "%Да%");';
             {
                 ClearGet();
                echo $this->CruisSetPop($_GET['cruis_id'],$_GET['val']);
+            }
+
+            elseif ($_GET['action'] == 'unset_search_res')
+            {
+                $this->unset_search_res(true);
             }
 
         }

@@ -1,20 +1,29 @@
-<h2><?php echo $ship->title;  ?></h2>
-<form id="ship_edit_form" action="ajax.html" name="ship_edit_form"  enctype="multipart/form-data" method="POST" class="w-clearfix">
-    <input type="hidden" name="action" value="ZAdminShipUpdate">
+<h2><?php echo $ship->title;  ?>
+    <a target="_blank" class="z-admin-show-link" href="/<?php echo $ship->url; ?>">(просмотреть на сайте)</a>
+</h2>
+<?php echo form_open("ships/ship/" . $ship->id ,array( 'enctype'=>"multipart/form-data",'class'=>'w-clearfix')); ?>
+
+    <input type="hidden" name="action" value="ShipUpdate">
     <input type="hidden" name="ship_id" value="<?php echo $ship->id; ?>">
     <!-- <h3 class="ship-modal-title"><?php echo $ship->title; ?></h3> -->
     <div class="w-clearfix s-d-top-div">
-        <label for="name" class="sf-img-inpu-label">Изменить главное изображение:</label>
-        <input id="name" type="file"  name="shipImg" data-name="Name" class="w-input sf-img-input">
-        <img src="/<?php echo $ship->TV['t_title_img'];  ?>" class="s-t-img">
-        <div class="s-d-text-input" style="width: 700px">
-            <textarea id="ship-description"
-                      placeholder="Описание теплохода"
-                      name="ship-description"
-                      data-name="ship-description" row="20"
-                      class="w-input s-d-text-input"><?php echo $ship->TV['t_description'];  ?></textarea></div>
+        <div class="ship-edit-head">
+            <div class="seh-1">
+                <label for="name" class="sf-img-inpu-label">Изменить главное изображение:</label>
+                <input id="name" type="file"  name="shipImg" data-name="Name" class="w-input sf-img-input">
+                <img src="/<?php echo $ship->TV['t_title_img'];  ?>" class="s-t-img">
+            </div>
 
 
+            <div class="s-d-text-input" style="width: 700px">
+                <label for="ship-description" class="sf-img-inpu-label">Описание теплохода:</label>
+                <textarea id="ship-description"
+                          placeholder="Описание теплохода"
+                          name="ship-description"
+                          data-name="ship-description" row="20"
+                          class="w-input s-d-text-input"><?php echo $ship->TV['t_description'];  ?></textarea></div>
+
+        </div>
 
         <div class="adm-cauta-types-modal">
             <h3>Типы кают</h3>
@@ -34,25 +43,14 @@
                 </a>
                 <?php
             }
-
-
-
             ?>
-
         </div>
-
-
-
-
-
-
         <div class="w-clearfix ff-sm-img-box">
             <img  src="<?php echo $ship->TV['t_gl_img_01'];  ?>"  class="ff-sm-img">
             <img  src="<?php echo $ship->TV['t_gl_img_02'];  ?>"  class="ff-sm-img">
             <img  src="<?php echo $ship->TV['t_gl_img_03'];  ?>"  class="ff-sm-img">
             <img  src="<?php echo $ship->TV['t_gl_img_04'];  ?>"  class="ff-sm-img">
         </div>
-
     </div>
     <label for="name" class="sf-img-inpu-label">Дополнительные изображения:</label>
     <input id="name" type="file" name="t_gl_img_01" class="w-input sf-img-input">
@@ -79,7 +77,7 @@
 
 
     <h3 class="sf-h3">Круизы</h3>
-    <div class="s-form-cruis-list" style="height: auto;overflow: auto">
+    <div class="s-form-cruis-list" style="height: 400px;overflow: auto">
         <?php
         foreach($ship->CruisList as $cruis)
         {
@@ -105,6 +103,6 @@
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>
     $(function() {
-        setTimeout(function() { tinymce.init({ selector:'#ship-description' }); }, 1000);
+       tinymce.init({ selector:'#ship-description' });
     });
 </script>

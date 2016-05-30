@@ -16,52 +16,73 @@ class Functions {
     }
 
 
+//РіРµРЅРµСЂР°С‚РѕСЂ РїР°СЂРѕР»РµР№
+    function PassGen($max=10)
+    {
+        // РЎРёРјРІРѕР»С‹, РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РІ РїР°СЂРѕР»Рµ.
+        $chars="qazxswedcvfrtgbnhyujmkip23456789QAZXSWEDCVFRTGBNHYUJMKLP";
+        // РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РІ РїР°СЂРѕР»Рµ.
+
+        // РћРїСЂРµРґРµР»СЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РІ $chars
+        $size=StrLen($chars)-1;
+
+        // РћРїСЂРµРґРµР»СЏРµРј РїСѓСЃС‚СѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ, РІ РєРѕС‚РѕСЂСѓСЋ Рё Р±СѓРґРµРј Р·Р°РїРёСЃС‹РІР°С‚СЊ СЃРёРјРІРѕР»С‹.
+        $password=null;
+
+        // РЎРѕР·РґР°С‘Рј РїР°СЂРѕР»СЊ.
+        while($max--)
+            $password.=$chars[rand(0,$size)];
+
+        // Р’С‹РІРѕРґРёРј СЃРѕР·РґР°РЅРЅС‹Р№ РїР°СЂРѕР»СЊ.
+        return $password;
+    }
+
 
 
     function rus2translit($string) {
         $converter = array(
-            'а' => 'a',   'б' => 'b',   'в' => 'v',
-            'г' => 'g',   'д' => 'd',   'е' => 'e',
-            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
-            'и' => 'i',   'й' => 'y',   'к' => 'k',
-            'л' => 'l',   'м' => 'm',   'н' => 'n',
-            'о' => 'o',   'п' => 'p',   'р' => 'r',
-            'с' => 'c',   'т' => 't',   'у' => 'u',
-            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
-            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
-            'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
-            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+            'Р°' => 'a',   'Р±' => 'b',   'РІ' => 'v',
+            'Рі' => 'g',   'Рґ' => 'd',   'Рµ' => 'e',
+            'С‘' => 'e',   'Р¶' => 'zh',  'Р·' => 'z',
+            'Рё' => 'i',   'Р№' => 'y',   'Рє' => 'k',
+            'Р»' => 'l',   'Рј' => 'm',   'РЅ' => 'n',
+            'Рѕ' => 'o',   'Рї' => 'p',   'СЂ' => 'r',
+            'СЃ' => 'c',   'С‚' => 't',   'Сѓ' => 'u',
+            'С„' => 'f',   'С…' => 'h',   'С†' => 'c',
+            'С‡' => 'ch',  'С€' => 'sh',  'С‰' => 'sch',
+            'СЊ' => '\'',  'С‹' => 'y',   'СЉ' => '\'',
+            'СЌ' => 'e',   'СЋ' => 'yu',  'СЏ' => 'ya',
 
-            'А' => 'A',   'Б' => 'B',   'В' => 'V',
-            'Г' => 'G',   'Д' => 'D',   'Е' => 'E',
-            'Ё' => 'E',   'Ж' => 'Zh',  'З' => 'Z',
-            'И' => 'I',   'Й' => 'Y',   'К' => 'K',
-            'Л' => 'L',   'М' => 'M',   'Н' => 'N',
-            'О' => 'O',   'П' => 'P',   'Р' => 'R',
-            'С' => 'C',   'Т' => 'T',   'У' => 'U',
-            'Ф' => 'F',   'Х' => 'H',   'Ц' => 'C',
-            'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
-            'Ь' => '_',  'Ы' => 'Y',   'Ъ' => '_',
-            'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
+            'Рђ' => 'A',   'Р‘' => 'B',   'Р’' => 'V',
+            'Р“' => 'G',   'Р”' => 'D',   'Р•' => 'E',
+            'РЃ' => 'E',   'Р–' => 'Zh',  'Р—' => 'Z',
+            'Р' => 'I',   'Р™' => 'Y',   'Рљ' => 'K',
+            'Р›' => 'L',   'Рњ' => 'M',   'Рќ' => 'N',
+            'Рћ' => 'O',   'Рџ' => 'P',   'Р ' => 'R',
+            'РЎ' => 'C',   'Рў' => 'T',   'РЈ' => 'U',
+            'Р¤' => 'F',   'РҐ' => 'H',   'Р¦' => 'C',
+            'Р§' => 'Ch',  'РЁ' => 'Sh',  'Р©' => 'Sch',
+            'Р¬' => '_',  'Р«' => 'Y',   'РЄ' => '_',
+            'Р­' => 'E',   'Р®' => 'Yu',  'РЇ' => 'Ya',
         );
         return strtr($string, $converter);
     }
 
     function encodestring($str) {
-        // переводим в транслит
+        // РїРµСЂРµРІРѕРґРёРј РІ С‚СЂР°РЅСЃР»РёС‚
         $str = rus2translit($str);
-        // в нижний регистр
+        // РІ РЅРёР¶РЅРёР№ СЂРµРіРёСЃС‚СЂ
         $str = strtolower($str);
-        // заменям все ненужное нам на "-"
+        // Р·Р°РјРµРЅСЏРј РІСЃРµ РЅРµРЅСѓР¶РЅРѕРµ РЅР°Рј РЅР° "-"
         $str = preg_replace('~[^-a-z0-9_]+~u', '-', $str);
-        // удаляем начальные и конечные '-'
+        // СѓРґР°Р»СЏРµРј РЅР°С‡Р°Р»СЊРЅС‹Рµ Рё РєРѕРЅРµС‡РЅС‹Рµ '-'
         $str = trim($str, "-");
 
 
         return $str;
     }
 
-//Инфо по продукту
+//РРЅС„Рѕ РїРѕ РїСЂРѕРґСѓРєС‚Сѓ
 
     function GetContentTV($content_id)
     {
@@ -108,12 +129,19 @@ class Functions {
     {
         $tv_id=$this->GetTV_Id_ByName($tv_name);
 
-        //modx_site_tmplvar_templates - содежит связь между полями и шаблонами
-        //modx_site_tmplvar_contentvalues - содежит значения полей в странице
-        //modx_site_tmplvars - поля
-        //modx_site_content - страницы
+        //modx_site_tmplvar_templates - СЃРѕРґРµР¶РёС‚ СЃРІСЏР·СЊ РјРµР¶РґСѓ РїРѕР»СЏРјРё Рё С€Р°Р±Р»РѕРЅР°РјРё
+        //modx_site_tmplvar_contentvalues - СЃРѕРґРµР¶РёС‚ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№ РІ СЃС‚СЂР°РЅРёС†Рµ
+        //modx_site_tmplvars - РїРѕР»СЏ
+        //modx_site_content - СЃС‚СЂР°РЅРёС†С‹
 
-        $sql="select * from " . $this->table_prefix . "site_tmplvar_contentvalues where (contentid='".$page_id."')and(tmplvarid=".$tv_id.") ";
+        $page_id=$this->CI->security->xss_clean($page_id);
+        $tv_id=$this->CI->security->xss_clean($tv_id);
+        $tv_value=$this->CI->security->xss_clean($tv_value);
+
+
+        $sql="select * from " . $this->table_prefix . "site_tmplvar_contentvalues
+        where (contentid='".$page_id."')and(tmplvarid=".$tv_id.") ";
+
         $c_tv_id=0;
         $query = $this->CI->dbMySQL->query($sql);
         foreach ($query->result_array() as $row_c_tv) {
@@ -122,29 +150,33 @@ class Functions {
 
         if ($c_tv_id == 0) {
             $sql_modx_vars = "INSERT INTO " . $this->table_prefix . "site_tmplvar_contentvalues
-(tmplvarid,contentid,value) VALUES ('" . $tv_id . "','".$page_id."','".$this->CI->security->xss_clean($tv_value)."');";
-               echo $sql_modx_vars . "<br>";
-            $this->dbMySQL->query($sql_modx_vars);
+            (tmplvarid,contentid,value)
+             VALUES
+            ('" . $tv_id . "','".$page_id."','".$this->CI->dbMySQL->escape_str($tv_value)."');";
+              // echo $sql_modx_vars . "<br>";
+            $this->CI->dbMySQL->query($sql_modx_vars);
 
         } else {
             $sql_modx_vars = "update " . $this->table_prefix . "site_tmplvar_contentvalues
-            set value='".$this->CI->security->xss_clean($tv_value)."' where  (tmplvarid='" . $tv_id . "')and(contentid='".$page_id."')";
-            echo $sql_modx_vars;
+            set value='".$this->CI->dbMySQL->escape_str($tv_value)."' where  (tmplvarid='" . $this->CI->dbMySQL->escape_str($tv_id)
+                . "')and(contentid='".$this->CI->dbMySQL->escape_str($page_id)."')";
+            //echo $sql_modx_vars;
             $this->CI->dbMySQL->query($sql_modx_vars);
         }
     }
 
 
-    /*Вставляет страницу в ModX из объекта*/
+    /*Р’СЃС‚Р°РІР»СЏРµС‚ СЃС‚СЂР°РЅРёС†Сѓ РІ ModX РёР· РѕР±СЉРµРєС‚Р°*/
     function IncertPage($page)
     {
 
         /*
-       * Описание объекта Ship
-       * $page->pagetitle - Название корабля
-       * $page->parent=2 - Родитель
-       * $page->template=2 - Шаблон
-       * $page->url=2 - Шаблон
+
+       * $page->id
+       * $page->pagetitle - РќР°Р·РІР°РЅРёРµ РєРѕСЂР°Р±Р»СЏ
+       * $page->parent=2 - Р РѕРґРёС‚РµР»СЊ
+       * $page->template=2 - РЁР°Р±Р»РѕРЅ
+       * $page->url=2 - РЁР°Р±Р»РѕРЅ
        * $page->TV['t_title']
        * $page->TV['t_inner_id']
        * $page->TV['t_title_img']
@@ -153,20 +185,43 @@ class Functions {
        *$page->url="ships/" .$Ship->alias . ".html"
        * */
 
-        //импортируем страницы
+        //РёРјРїРѕСЂС‚РёСЂСѓРµРј СЃС‚СЂР°РЅРёС†С‹
 
-        //Ищем такую страницу
-        $product_id = 0;
-        $page->pagetitle = $this->CI->security->xss_clean($page->pagetitle);
-        $sql_page = "select * from " . $this->table_prefix . "site_content where pagetitle='" . $page->pagetitle . "'";
-        // echo $sql_page;
-        $query = $this->CI->dbMySQL->query($sql_page);
-        foreach ($query->result_array() as $row_page) {
-            $product_id = $row_page['id'];
+        if(isset($page->pagetitle)) $page->pagetitle = $this->CI->security->xss_clean($page->pagetitle);
+        if(isset($page->id)) $page->id = (int)$page->id;
+        if(isset($page->alias)) $page->alias = $this->CI->security->xss_clean($page->alias);
+        if(isset($page->longtitle)) $page->longtitle = $this->CI->security->xss_clean($page->longtitle);
+        if(isset($page->url)) $page->url = $this->CI->security->xss_clean($page->url);
+
+
+        if((isset($page->id))and($page->id!=0))
+        {
+            $product_id=$page->id;
+
+            if(isset($page->pagetitle))
+            {
+                $sql="UPDATE " . $this->table_prefix . "site_content
+            SET pagetitle = '" . $page->pagetitle . "' where id='".$page->id."' ;";
+                $this->CI->dbMySQL->query($sql);
+            }
+
+            if(isset($page->longtitle))
+            {
+                $sql = "UPDATE " . $this->table_prefix . "site_content
+            SET longtitle = '" . $page->pagetitle . "' where id='" . $page->id . "' ;";
+                $this->CI->dbMySQL->query($sql);
+            }
+
+            if(isset($page->longtitle))
+            {
+                $sql = "UPDATE " . $this->table_prefix . "site_content
+            SET alias = '" . $page->alias . "' where id='" . $page->id . "' ;";
+                $this->CI->dbMySQL->query($sql);
+            }
         }
+        else
+        {
 
-
-        if ($product_id == 0) {
             $sql_product = "INSERT INTO " . $this->table_prefix . "site_content
 (id, type, contentType, pagetitle, longtitle,
 description, alias, link_attributes,
@@ -180,18 +235,28 @@ menutitle, donthit, privateweb, privatemgr,
 content_dispo, hidemenu, class_key, context_key,
 content_type, uri, uri_override, hide_children_in_tree,
 show_in_tree, properties)
-VALUES (NULL, 'document', 'text/html', '" .  $page->pagetitle . "', '', '', '" . $page->alias . "',
+VALUES (NULL, 'document', 'text/html', '" . $page->pagetitle . "', '', '', '" . $page->alias . "',
 '', true, 0, 0, " . $page->parent . ", false, '', '', true, " . $page->template . ", 1, true, true, 1, 1421901846, 0, 0, false, 0, 0, 1421901846, 1, '',
 false, false, false, false, false, 'modDocument', 'web', 1,
  '" . $page->url . "', false, false, true, null
  );
 
 ;";
+           // echo $sql_product;
 
             $this->CI->dbMySQL->query($sql_product);
-            $product_id=$this->CI->dbMySQL->last_query();
 
-            if((isset($page->echo))and($page->echo)) echo "INCERT ".$product_id."\r\n"."<br>";
+            $product_id = $this->CI->dbMySQL->insert_id();
+
+            if ((isset($page->echo)) and ($page->echo)) echo "INCERT " . $product_id . "\r\n" . "<br>";
+        }
+        //РС‰РµРј С‚Р°РєСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ
+
+
+
+        if ($product_id == 0)
+        {
+
         }
         else
         {
@@ -274,8 +339,8 @@ false, false, false, false, false, 'modDocument', 'web', 1,
             $product->alias = $row['alias'];
             $product->parent = $row['parent'];
             $product->content = $row['content'];
-            //теперь дополнительные поля
-            // - 1 - если это подарки, то тут нету дополнительных цен
+            //С‚РµРїРµСЂСЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ
+            // - 1 - РµСЃР»Рё СЌС‚Рѕ РїРѕРґР°СЂРєРё, С‚Рѕ С‚СѓС‚ РЅРµС‚Сѓ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… С†РµРЅ
             $tv = $this->GetContentTV($page_id);
             $product->TV = $tv;
             $product->TV_Full =$this->GetContentTVFull($page_id);
@@ -284,7 +349,7 @@ false, false, false, false, false, 'modDocument', 'web', 1,
     }
 
 
-//Инфа по все потомкам не отсортированный по id
+//РРЅС„Р° РїРѕ РІСЃРµ РїРѕС‚РѕРјРєР°Рј РЅРµ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РїРѕ id
     function GetChildListNoSort($obj_id,$template,$deleted=true)
     {
 

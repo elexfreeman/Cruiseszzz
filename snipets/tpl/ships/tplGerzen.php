@@ -106,28 +106,62 @@
             <metadata id="CorelCorpID_0Corel-Layer"/>
             <g id="_2380635112448">
                 <g id="_2380658109264">
-                    <rect class="fil0 str0" x="13615" y="20866" width="797" height="993"/>
+                    <rect class="fil0 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 3Б уд"
+                          data-content="
+                Трехместная каюта на средней палубе с удобствами. Обзорное окно.
+В  каюте: душ, туалет, электро розетка, радиоприемник, стул, шкаф для одежды.
+"
+                          x="13615" y="20866" width="797" height="993"/>
                     <g>
                         <text x="14502" y="21533"  class="fil1 fnt0">3Б </text>
                         <text x="15112" y="21533"  class="fil1 fnt0">уд</text>
                     </g>
                 </g>
                 <g id="_2380658109232">
-                    <rect class="fil2 str0" x="1" y="20866" width="797" height="993"/>
+                    <rect class="fil2 str0  cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории ЛЮКС"
+                          data-content="
+                <b>Каюты категории ЛЮКС - двухместные двухкомнатные на шлюпочной палубе.</b><br>
+В каюте: две односпальные кровати, диван, душ, санузел, кондиционер, холодильник, DVD, шкаф для одежды, радио, два больших обзорных окна.
+"
+                          x="1" y="20866" width="797" height="993"/>
                     <g>
                         <text x="932" y="21529"  class="fil1 fnt0">Л</text>
                         <text x="1234" y="21529"  class="fil1 fnt0">юкс</text>
                     </g>
                 </g>
                 <g id="_2380658108272">
-                    <rect class="fil3 str0" x="11259" y="20866" width="797" height="993"/>
+                    <rect class="fil3 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 2Г уд 
+"
+                          data-content="
+               Двухместная на нижней палубе с удобствами. Две односпальных кровати, иллюминаторы. В каютах 123 и 127 двухспальные кровати.
+"
+                          x="11259" y="20866" width="797" height="993"/>
                     <g>
                         <text x="12155" y="21532"  class="fil1 fnt0">2Б</text>
                         <text x="12746" y="21532"  class="fil1 fnt0">уд</text>
                     </g>
                 </g>
                 <g id="_2380658105680">
-                    <rect class="fil4 str0" x="2410" y="20866" width="797" height="993"/>
+                    <rect class="fil4 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории ПЛ* 
+ 
+"
+                          data-content="
+             ПЛ (полулюкс) - двухместный однокомнатный на главной палубе. В каюте: двухспальная кровать, кондиционер, холодильник, прикроватная тумба, душ, санузел, шкаф для одежды, радио, обзорные окна.
+
+"
+                          x="2410" y="20866" width="797" height="993"/>
                     <g>
                         <g transform="matrix(1.00457 0 0 1 -9670.55 10602.3)">
                             <text x="12907" y="10930"  class="fil1 fnt0">Полулюкс**</text>
@@ -135,41 +169,96 @@
                     </g>
                 </g>
                 <g id="_2380658477616">
-                    <rect class="fil5 str0" x="9439" y="20866" width="797" height="993"/>
+                    <rect class="fil5 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 1А 
+ 
+"
+                          data-content="
+            Каюты категории 1А - одноместные на шлюпочной палубе.
+В каюте: односпальное место, умывальник с горячей и холодной водой, шкаф для одежды, радио, обзорное окно.
+
+"
+                          x="9439" y="20866" width="797" height="993"/>
                     <g>
                         <text x="10316" y="21535"  class="fil1 fnt0">1</text>
                         <text x="10580" y="21535"  class="fil1 fnt0">А</text>
                     </g>
                 </g>
                 <g id="_2380658478384">
-                    <rect class="fil6 str0" x="15981" y="20866" width="797" height="993"/>
+                    <rect class="fil6 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 2Б2 
+
+ 
+"
+                          data-content="
+           Двухместная двухъярусная на средней палубе с частичными удобствами (умывальник с горячей и холодной водой), обзорное окно.
+
+"
+                          x="15981" y="20866" width="797" height="993"/>
                     <g>
                         <text x="16876" y="21533"  class="fil1 fnt0">2</text>
                         <text x="17140" y="21533"  class="fil1 fnt0">Б2, 2В2</text>
                     </g>
                 </g>
                 <g id="_2380658476880">
-                    <rect class="fil7 str0" x="22117" y="20866" width="797" height="993"/>
+                    <rect class="fil7 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 2В"
+                          data-content="
+          2В - двухместная на главной палубе. В каюте: двухспальная кровать, умывальник с горячей и холодной водой, шкаф для одежды, прикроватная тумбочка, радио, обзорное окно.
+"
+                          x="22117" y="20866" width="797" height="993"/>
                     <g>
                         <text x="23013" y="21533"  class="fil1 fnt0">2</text>
                         <text x="23277" y="21533"  class="fil1 fnt0">В</text>
                     </g>
                 </g>
                 <g id="_2380658457680">
-                    <rect class="fil8 str0" x="19038" y="20866" width="797" height="993"/>
+                    <rect class="fil8 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 4В2"
+                          data-content="
+          Четырехместная ярусная на главной палубе с частичными удобствами (умывальник с горячей и холодной водой), обзорное окно. Возможно размещение 3-х человек в каюте с наценкой 5%, (к указанной стоимости плюс 5% и получаем стоимость на одного человека в 3-х местной каюте)
+
+"
+                          x="19038" y="20866" width="797" height="993"/>
                     <g>
-                        <text x="19956" y="21533"  class="fil1 fnt0">4Б2, 4В2</text>
+                        <text x="19956" y="21533"
+
+                              class="fil1 fnt0">4Б2, 4В2</text>
                     </g>
                 </g>
                 <g id="_2380620925168">
-                    <rect class="fil9 str0" x="23932" y="20866" width="797" height="993"/>
+                    <rect class="fil9 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории 2Г уд"
+                          data-content="
+          Двухместная на нижней палубе с удобствами. Две односпальных кровати, иллюминаторы. В каютах 123 и 127 двухспальные кровати.
+
+"
+                          x="23932" y="20866" width="797" height="993"/>
                     <g>
                         <text x="24828" y="21535"  class="fil1 fnt0">2Г </text>
                         <text x="25344" y="21535"  class="fil1 fnt0">уд</text>
                     </g>
                 </g>
                 <g id="_2380620924080">
-                    <rect class="fil10 str0" x="6098" y="20866" width="797" height="993"/>
+                    <rect class="fil10 str0 cautaDescription"
+                          data-container="body"
+                          data-placement="right"
+                          title="Каюты категории ПЛ"
+                          data-content="
+          Каюты категории Полулюкс - двухкомнатные на средней палубе со всеми удобствами. Рассчитаны на размещение от двух до четырех человек.
+В каюте: двухспальная кровать, душ, туалет, кондиционер, диван раздвижной, журнальный столик, стул, два обзорных окна.
+"
+                          x="6098" y="20866" width="797" height="993"/>
                     <g>
                         <text x="6983" y="21533"  class="fil1 fnt0">Полулюкс</text>
                     </g>
@@ -204,7 +293,7 @@
                 <ellipse class="fil11 str1" cx="7252" cy="999" rx="749" ry="293"/>
                 <g>
                     <g transform="matrix(2.64845E-014 -0.999999 1 2.64845E-014 4012.21 14739.6)">
-                        <text x="12907" y="10930"  class="fil1 fnt1 CautaClick">2</text>
+                        <text x="12907" y="10930"  class="fil1 fnt1c">2</text>
                     </g>
                 </g>
                 <g>
@@ -1206,7 +1295,7 @@
                 </g>
                 <g>
                     <g transform="matrix(2.64845E-014 -0.999999 1 2.64845E-014 3619.22 24966)">
-                        <text x="12907" y="10930"  class="fil1 fnt1">88</text>
+                        <text x="12907" y="10930"  class="fil1 fnt1 CautaClick">88</text>
                     </g>
                 </g>
                 <g>

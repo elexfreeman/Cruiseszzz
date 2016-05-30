@@ -138,16 +138,18 @@ class Ships_model extends CI_Model
     }
 
 
-    function IncertCautaType($ship_id,$arg)
+    function IncertCautaType($ship_id,$cautatypeid,$arg)
     {
         $ship=$this->GetShipInfo($ship_id);
         $page = new stdClass();
-        $page->pagetitle=$arg['pagetitle'].'_'.$ship_id;
+        if($cautatypeid!=0) $page->id=$cautatypeid;
+        $page->pagetitle=$arg['pagetitle'];
         $page->parent=$ship->cautaTypesRoot[0]->id;
         $page->template=$this->CautaTypeTpl;
         $page->url='';
+        $page->TV['k_type_name']=$arg['pagetitle'];
         $page->TV['k_description']=$arg['k_description'];
-        for($i=1;$i<=4;$i++) $page->TV['k_img'.$i]=$arg['k_img'.$i];
+        //for($i=1;$i<=4;$i++) $page->TV['k_img'.$i]=$arg['k_img'.$i];
 
         $naborUslog='';
         foreach ($arg as $key=>$value) {
@@ -156,11 +158,118 @@ class Ships_model extends CI_Model
         }
 
         $page->TV['k_params']=$naborUslog;
-
-        print_r($page);
-
         $page->alias = '';
         $this->functions->IncertPage($page);
+
+
+        /*Теперь картинки*/
+        for($i=1;$i<=4;$i++)
+        {
+            if(((isset($_FILES['k_img'.$i]['name'])))and($_FILES['k_img'.$i]['name']!=''))
+            {
+                $rnd=$this->functions->PassGen();
+                $uploadfile = $this->config->item('images_dir') . $rnd.'_'.basename($_FILES['k_img'.$i]['name']);
+
+                if (move_uploaded_file($_FILES['k_img'.$i]['tmp_name'],$uploadfile)) {
+
+                    $page->TV['k_img'.$i]=$rnd.'_'.basename($_FILES['k_img'.$i]['name']);
+
+                } else {
+                  //error
+                }
+            }
+        }
+
+        $this->functions->IncertPage($page);
+    }
+
+    /*Устанавливат популярный круиз*/
+    function CruisSetPop($cruis_id,$val)
+    {
+        $this->functions->IncertPageTV($cruis_id,'kr_pop',$val);
+        $res['status']='done';
+        return json_encode($res);
+    }
+
+    function ShipDataUpdate($ship_id)
+    {
+        /*Проверяем пришло ли обновление картинки*/
+        if((isset($_FILES['shipImg']['name']))and($_FILES['shipImg']['name']!=''))
+        {
+            $rnd=$this->PassGen();
+            $uploadfile = $this->config->item('images_dir') . $rnd.'_'.basename($_FILES['shipImg']['name']);
+
+            if (move_uploaded_file($_FILES['shipImg']['tmp_name'],$uploadfile))
+            {
+                $this->functions->IncertPageTV($ship_id,'t_title_img', '/images/teplohod/'.$rnd.'_'.basename($_FILES['shipImg']['name']) );
+            }
+            else
+            {
+               // echo "Возможная атака с помощью файловой загрузки!\n";
+            }
+        }
+
+        /*Схема теплохода*/
+        if((isset($_FILES['t_sh_img']['name']))and($_FILES['t_sh_img']['name']!=''))
+        {
+            $rnd=$this->PassGen();
+            $uploadfile = $this->uploaddir . $rnd.'_'.basename($_FILES['t_sh_img']['name']);
+
+            if (move_uploaded_file($_FILES['t_sh_img']['tmp_name'],$uploadfile))
+            {
+                //echo "Файл корректен и был успешно загружен.\n";
+                $this->functions->IncertPageTV($ship_id,'t_sh_img', '/images/teplohod/'.$rnd.'_'.basename($_FILES['t_sh_img']['name']) );
+            }
+            else
+            {
+               // echo "Возможная атака с помощью файловой загрузки!\n";
+            }
+        }
+
+        /*Дополнительные 4 изображения*/
+        //echo 'Дополнительные 4 изображения';
+        for($i=1;$i<5;$i++)
+        {
+            if($_FILES['t_gl_img_0'.$i]['name']!='')
+            {
+                $rnd=$this->PassGen();
+                $uploadfile = $this->config->item('images_dir') . $rnd.'_'.basename($_FILES['t_gl_img_0'.$i]['name']);
+
+                if (move_uploaded_file($_FILES['t_gl_img_0'.$i]['tmp_name'],$uploadfile))
+                {
+                  //  echo "Файл корректен и был успешно загружен.\n";
+                    $this->functions->IncertPageTV($ship_id,'t_gl_img_0'.$i, '/images/teplohod/'.$rnd.'_'.basename($_FILES['t_gl_img_0'.$i]['name']) );
+                }
+                else
+                {
+                   // echo "Возможная атака с помощью файловой загрузки!\n";
+                }
+            }
+        }
+
+        /*Хериим все данные об популярных круизах теплохода*/
+        $cruis_list=$this->GetShipCruisList($ship_id);
+        foreach($cruis_list as $cruis)
+        {
+            $this->functions->IncertPageTV($cruis->id,'kr_pop','Нет');
+        }
+
+        /*перебираем все круизы теплохода*/
+        foreach ($_POST as $tt=>$val )
+        {
+            $tt=explode('_',$tt);
+
+            if($tt[0]=='cruis')
+            {
+                $cruis_id=$tt[1];
+                $this->CruisSetPop($cruis_id,'Да');
+            }
+        }
+
+        /*Вставляем текст параходик*/
+        if(isset($_POST['ship-description'])) $this->functions->IncertPageTV($ship_id,'t_description',$_POST['ship-description']);
+        if(isset($_POST['t_usl'])) $this->functions->IncertPageTV($ship_id,'t_usl',$_POST['t_usl']);
+        if(isset($_POST['t_teh_xar'])) $this->functions->IncertPageTV($ship_id,'t_teh_xar',$_POST['t_teh_xar']);
 
     }
 

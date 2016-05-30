@@ -4,16 +4,18 @@ if ($cautatypeid == '0') {
     ?>
     <h3>Добавление нового типа каюты</h3>
     <?php
+
+    echo form_open("ships/cautatypesedit/" . $ship->id ,array( 'enctype'=>"multipart/form-data"));
 } else {
     ?>
     <h3>Редактирование типа каюты <?php echo $cautatype->TV['k_type_name']; ?></h3>
+
     <?php
+    echo form_open("ships/cautatypesedit/" . $ship->id . "/" . $cautatype->id,array( 'enctype'=>"multipart/form-data"));
 }
-?>
 
-<?php echo form_open("ships/cautatypesedit/" . $ship->id . "/" . $cautatype->id); ?>
 
-<?php
+
 if ($cautatypeid == '0') {
     ?>
     <input type="hidden" name="action" value="save">
@@ -72,7 +74,7 @@ if ($cautatypeid == '0') {
     {
         if ((isset($cautatype->TV['k_img' . $i])) and ($cautatype->TV['k_img' . $i] != '')) {
             ?>
-            <img class="k_img" src="<?php echo $cautatype->TV['k_img' . $i] ?>">
+            <img class="k_img" src="/images/<?php echo $cautatype->TV['k_img' . $i] ?>">
             <?php
         }
     }
